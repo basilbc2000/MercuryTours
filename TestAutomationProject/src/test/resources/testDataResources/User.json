@@ -1,0 +1,30 @@
+[{
+	"firstName" : "Test01",
+	"lastName" : "User",
+	"phone" : "123456789",
+	"email" : "test01@test.test",
+	"address1" : "test01 address1",
+	"address2" : "test01 address2",
+	"city" : "test01 city",
+	"state" : "test01 state",
+	"postalCode" : "123456",
+	"country" : "INDIA",
+	"userName" : "testuser",
+	"password" : "sample",
+	"confirmPassword" : "sample"
+},
+{
+   "firstName" : "Test02",
+	"lastName" : "User",
+	"phone" : "987654321",
+	"email" : "test02@test.test",
+	"address1" : "test02 address1",
+	"address2" : "test02 address2",
+	"city" : "test02 city",
+	"state" : "test02 state",
+	"postalCode" : "654321",
+	"country" : "INDIA",
+	"userName" : "testuser",
+	"password" : "sample",
+	"confirmPassword" : "sample"
+}]

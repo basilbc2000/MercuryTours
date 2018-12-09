@@ -1,0 +1,59 @@
+package pageObjects;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
+import managers.FileReaderManager;
+
+public class HomePage {
+
+	WebDriver driver;
+	
+	public HomePage(WebDriver driver) {
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
+	
+	@FindBy(how = How.LINK_TEXT, using="REGISTER")
+	private WebElement link_register;
+	
+	@FindBy(how = How.NAME, using="userName")
+	private WebElement txb_userName;
+
+	@FindBy(how = How.NAME, using="password")
+	private WebElement txb_password;
+	
+	@FindBy(how = How.NAME, using="login")
+	private WebElement btn_Login;
+	
+	
+	public void click_register() {
+		link_register.click();
+	}
+	
+	public void type_userName(String name) {
+		txb_userName.sendKeys(name);
+	}
+	
+	public void type_password(String password) {
+		txb_password.sendKeys(password);
+	}
+	
+	public void click_login() {
+		btn_Login.click();
+	}
+	
+	public void open_HomePage() {		
+		driver.get(FileReaderManager.getInstance().getConfigReader().getApplicationUrl());
+	}
+	
+	public Boolean is_HomePage() {
+		Boolean flag = false;
+		if (driver.getTitle().equals("Welcome: Mercury Tours")) {
+			flag = true;
+		}
+		return(flag);
+	}
+}
