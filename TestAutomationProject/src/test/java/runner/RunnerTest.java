@@ -11,9 +11,9 @@ import cucumber.api.junit.Cucumber;
         plugin = {"html:target/cucumber-reports", "json:target/cucumber-reports/Cucumber.json"}
 )
 
-public class SingleRunner {
+public class RunnerTest {
 
-	public SingleRunner() {
+	public RunnerTest() {
 		// TODO Auto-generated constructor stub
 	}
 
