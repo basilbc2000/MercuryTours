@@ -1,0 +1,46 @@
+#docker-compose up -d
+#docker ps -a
+#docker-compose down
+#docker run –d –P –link selenium-hub:hub selenium/node-chrome-debug
+
+  selenium-hub:
+    restart: always
+    image: selenium/hub:latest
+    ports:
+      - "4444:4444"
+
+  firefox01:
+    container_name: ff001
+    restart: always
+    image: selenium/node-firefox-debug
+    ports:
+      - "32769:5900"
+    links:
+      - selenium-hub:hub
+
+  firefox02:
+    container_name: ff002
+    restart: always
+    image: selenium/node-firefox-debug
+    ports:
+      - "32770:5900"
+    links:
+      - selenium-hub:hub
+
+  firefox03:
+    container_name: ff003
+    restart: always
+    image: selenium/node-firefox-debug
+    ports:
+      - "32771:5900"
+    links:
+      - selenium-hub:hub
+
+  firefox04:
+    container_name: ff004
+    restart: always
+    image: selenium/node-firefox-debug
+    ports:
+      - "32772:5900"
+    links:
+      - selenium-hub:hub

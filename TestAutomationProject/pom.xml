@@ -140,7 +140,7 @@
 							</execution>
 						</executions>
 						<configuration>
-							<forkCount>2</forkCount>
+							<forkCount>5</forkCount>
 							<testFailureIgnore>true</testFailureIgnore>
 						</configuration>
 					</plugin>
