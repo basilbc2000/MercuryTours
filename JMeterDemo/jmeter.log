@@ -1,0 +1,30 @@
+2018/12/27 10:50:55 INFO  - jmeter.util.JMeterUtils: Setting Locale to en_US 
+2018/12/27 10:50:55 INFO  - jmeter.JMeter: Loading user properties from: F:\automation\jmeter\JMeterDemo\target\jmeter\bin\user.properties 
+2018/12/27 10:50:55 INFO  - jmeter.JMeter: Loading system properties from: F:\automation\jmeter\JMeterDemo\target\jmeter\bin\system.properties 
+2018/12/27 10:50:55 INFO  - jmeter.JMeter: Copyright (c) 1998-2016 The Apache Software Foundation 
+2018/12/27 10:50:55 INFO  - jmeter.JMeter: Version 3.0 r1743807 
+2018/12/27 10:50:55 INFO  - jmeter.JMeter: java.version=11.0.1 
+2018/12/27 10:50:55 INFO  - jmeter.JMeter: java.vm.name=OpenJDK 64-Bit Server VM 
+2018/12/27 10:50:55 INFO  - jmeter.JMeter: os.name=Windows 10 
+2018/12/27 10:50:55 INFO  - jmeter.JMeter: os.arch=amd64 
+2018/12/27 10:50:55 INFO  - jmeter.JMeter: os.version=10.0 
+2018/12/27 10:50:55 INFO  - jmeter.JMeter: file.encoding=Cp1252 
+2018/12/27 10:50:55 INFO  - jmeter.JMeter: Max memory     =1052770304 
+2018/12/27 10:50:55 INFO  - jmeter.JMeter: Available Processors =8 
+2018/12/27 10:50:55 INFO  - jmeter.JMeter: Default Locale=English (United States) 
+2018/12/27 10:50:55 INFO  - jmeter.JMeter: JMeter  Locale=English (United States) 
+2018/12/27 10:50:55 INFO  - jmeter.JMeter: JMeterHome=F:\automation\jmeter\JMeterDemo\target\jmeter 
+2018/12/27 10:50:55 INFO  - jmeter.JMeter: user.dir  =F:\automation\jmeter\JMeterDemo 
+2018/12/27 10:50:55 INFO  - jmeter.JMeter: PWD       =F:\automation\jmeter\JMeterDemo 
+2018/12/27 10:51:00 INFO  - jmeter.JMeter: IP: 10.0.75.1 Name: BAS-PC FullName: BAS-PC 
+2018/12/27 10:51:00 INFO  - jmeter.JMeter: Setting property 'jmeter.reportgenerator.outputdir' to:'F:\automation\jmeter\JMeterDemo\target\jmeter\results\dashboard' 
+2018/12/27 10:51:00 INFO  - jmeter.report.dashboard.ReportGenerator: ReportGenerator will use for Parsing the separator:',' 
+2018/12/27 10:51:00 FATAL - jmeter.JMeter: An error occurred:  java.lang.IllegalArgumentException: Cannot read test results file : F:\automation\jmeter\JMeterDemo\target\jmeter\results\*.jtl
+	at org.apache.jmeter.report.dashboard.ReportGenerator.<init>(ReportGenerator.java:127)
+	at org.apache.jmeter.JMeter.start(JMeter.java:477)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.apache.jmeter.NewDriver.main(NewDriver.java:259)
+
