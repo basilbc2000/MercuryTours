@@ -47,7 +47,7 @@
 						<goals>
 							<goal>jmeter</goal>
 						</goals>
-						<configuration>
+					<!-- <configuration>
 							<testFilesIncluded>
 								<jMeterTestFile>${JmeterTestFile}.jmx</jMeterTestFile>
 							</testFilesIncluded>
@@ -57,7 +57,7 @@
 								<Loopcount>${Loopcount}</Loopcount>
 								<Rampup>${RampUp}</Rampup>
 							</propertiesUser>
-						</configuration>
+						</configuration> -->
 					</execution>
 				</executions>
 			</plugin>
@@ -77,7 +77,7 @@
 										dir="${basedir}/src/test/resources/report-template" />
 								</copy>
 								<java
-									jar="${basedir}/target/jmeter/bin/ApacheJMeter-3.0.jar"
+									jar="${basedir}/target/jmeter/bin/ApacheJMeter-5.0.jar"
 									fork="true">
 									<arg value="-g" />
 									<arg value="${basedir}/target/jmeter/results/*.jtl" />
