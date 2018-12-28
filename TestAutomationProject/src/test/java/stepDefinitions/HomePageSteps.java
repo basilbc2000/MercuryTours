@@ -1,9 +1,9 @@
 package stepDefinitions;
 
-import cucumber.TestContext;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
+import managers.TestContext;
 import pageObjects.HomePage;
 
 public class HomePageSteps {

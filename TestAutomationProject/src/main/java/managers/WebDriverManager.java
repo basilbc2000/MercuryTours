@@ -3,7 +3,6 @@ package managers;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -46,7 +45,7 @@ public class WebDriverManager {
 		//throw new RuntimeException("RemoteWebDriver is not yet implemented");
 		//Capabilities chromeCapabilities = DesiredCapabilities.chrome();
 		Capabilities firefoxCapabilities = DesiredCapabilities.firefox();
-		RemoteWebDriver chrome, firefox = null;
+		RemoteWebDriver /*chrome,*/ firefox = null;
 		
 		try {
 			//chrome = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chromeCapabilities);

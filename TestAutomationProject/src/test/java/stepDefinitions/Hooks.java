@@ -1,8 +1,8 @@
 package stepDefinitions;
 
-import cucumber.TestContext;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import managers.TestContext;
 
 public class Hooks {
 

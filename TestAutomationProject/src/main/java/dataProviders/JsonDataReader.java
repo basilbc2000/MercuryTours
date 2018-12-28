@@ -7,8 +7,9 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import com.google.gson.Gson;
+
+import dataStructure.User;
 import managers.FileReaderManager;
-import testDataTypes.User;
 
 public class JsonDataReader {
 	private final String userFilePath = FileReaderManager.getInstance().getConfigReader().getTestDataResourcePath() + "User.json";

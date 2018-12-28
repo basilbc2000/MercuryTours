@@ -2,9 +2,9 @@ package stepDefinitions;
 
 import org.junit.Assert;
 
-import cucumber.TestContext;
 import cucumber.api.java.en.Then;
 import enums.Context;
+import managers.TestContext;
 import pageObjects.RegistrationConfPage;
 
 public class RegistrationConfSteps {

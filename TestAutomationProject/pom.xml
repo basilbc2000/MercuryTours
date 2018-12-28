@@ -5,8 +5,7 @@
 	<groupId>MercuryTours</groupId>
 	<artifactId>TestAutomationDemo</artifactId>
 	<packaging>jar</packaging>
-	<!-- <version>1.0-SNAPSHOT</version> -->
-	<version>1.3.0</version>
+	<version>1.0-SNAPSHOT</version>
 	<name>TestAutomationProject</name>
 	<url>http://maven.apache.org</url>
 
@@ -74,6 +73,21 @@
 			<version>2.8.5</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.11.1</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-api -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.11.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<profiles>
@@ -90,7 +104,7 @@
 					<plugin>
 						<groupId>com.trivago.rta</groupId>
 						<artifactId>cucable-plugin</artifactId>
-						<version>${project.version}</version>
+						<version>1.3.0</version>
 						<executions>
 							<execution>
 								<id>generate-test-resources</id>
@@ -101,7 +115,7 @@
 							</execution>
 						</executions>
 						<configuration>
-							<sourceRunnerTemplateFile>src/test/resources/features/CucableRunner.template</sourceRunnerTemplateFile>
+							<sourceRunnerTemplateFile>src/test/resources/CucableRunner.template</sourceRunnerTemplateFile>
 							<sourceFeatures>src/test/resources/features/ApplicationPages.feature</sourceFeatures>
 							<generatedFeatureDirectory>${generated.feature.directory}</generatedFeatureDirectory>
 							<generatedRunnerDirectory>${generated.runner.directory}</generatedRunnerDirectory>
@@ -186,29 +200,20 @@
 				</plugins>
 			</build>
 		</profile>
-
-		<profile>
-			<id>single</id>
-			<activation>
-				<property>
-					<name>run</name>
-					<value>single</value>
-				</property>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-compiler-plugin</artifactId>
-						<version>${maven.compiler.plugin.version}</version>
-						<configuration>
-							<source>1.8</source>
-							<target>1.8</target>
-						</configuration>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-
 	</profiles>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.plugin.version}</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>

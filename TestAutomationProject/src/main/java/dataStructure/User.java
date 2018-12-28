@@ -1,6 +1,6 @@
 //http://www.jsonschema2pojo.org/
 
-package testDataTypes;
+package dataStructure;
 
 public class User {
 	

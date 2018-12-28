@@ -17,10 +17,7 @@
 
 */
 
-package cucumber;
-
-import managers.PageObjectManager;
-import managers.WebDriverManager;
+package managers;
 
 public class TestContext {
 

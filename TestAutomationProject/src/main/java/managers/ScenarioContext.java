@@ -1,4 +1,4 @@
-package cucumber;
+package managers;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,7 +1,7 @@
 package stepDefinitions;
 
-import cucumber.TestContext;
 import cucumber.api.java.en.Then;
+import managers.TestContext;
 import pageObjects.SignOnPage;
 
 public class SignOnPageSteps {

@@ -1,13 +1,13 @@
 package stepDefinitions;
 
-import cucumber.TestContext;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import dataStructure.User;
 import enums.Context;
 import managers.FileReaderManager;
+import managers.TestContext;
 import pageObjects.RegistrationPage;
-import testDataTypes.User;
 
 public class RegistrationPageSteps {
 
