@@ -26,9 +26,8 @@
 				<configuration>
 					<testResultsTimestamp>false</testResultsTimestamp>
 					<propertiesUser>
-						<threadgroup.count>2</threadgroup.count>
-						<threadgroup.rampup>2</threadgroup.rampup>
-						<threadgroup.duration>5</threadgroup.duration>
+						<!-- <threadgroup.count>2</threadgroup.count> <threadgroup.rampup>2</threadgroup.rampup> 
+							<threadgroup.duration>5</threadgroup.duration> -->
 						<jmeter.save.saveservice.output_format>csv</jmeter.save.saveservice.output_format>
 						<jmeter.save.saveservice.bytes>true</jmeter.save.saveservice.bytes>
 						<jmeter.save.saveservice.label>true</jmeter.save.saveservice.label>
@@ -48,6 +47,17 @@
 						<goals>
 							<goal>jmeter</goal>
 						</goals>
+						<configuration>
+							<testFilesIncluded>
+								<jMeterTestFile>${JmeterTestFile}.jmx</jMeterTestFile>
+							</testFilesIncluded>
+							<testResultsTimestamp>false</testResultsTimestamp>
+							<propertiesUser>
+								<Threadcount>${Threadcount}</Threadcount>
+								<Loopcount>${Loopcount}</Loopcount>
+								<Rampup>${RampUp}</Rampup>
+							</propertiesUser>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
@@ -74,7 +84,7 @@
 									<arg value="-o" />
 									<arg value="${basedir}/target/jmeter/results/dashboard/" />
 								</java>
-								
+
 							</tasks>
 						</configuration>
 						<goals>
