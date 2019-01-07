@@ -1,7 +1,6 @@
 package stepDefinitions;
 
 import org.junit.Assert;
-
 import cucumber.api.java.en.Then;
 import enums.Context;
 import managers.TestContext;

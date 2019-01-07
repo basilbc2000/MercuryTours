@@ -7,18 +7,19 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import com.google.gson.Gson;
-
+import dataStructure.Item;
 import dataStructure.User;
 import managers.FileReaderManager;
 
 public class JsonDataReader {
-	private final String userFilePath = FileReaderManager.getInstance().getConfigReader().getTestDataResourcePath() + "User.json";
+	private final String userFilePath = FileReaderManager.getInstance().getConfigReader().getDataPath() + "User.json";
 	private List<User> userList;
 
 	public JsonDataReader(){
 		userList = getUserData();
 	}
 
+	
 	private List<User> getUserData() {
 		Gson gson = new Gson();
 		BufferedReader bufferReader = null;
@@ -37,6 +38,5 @@ public class JsonDataReader {
 	public final User getUserByName(String userName){
 		return userList.stream().filter(x -> x.firstName.equalsIgnoreCase(userName)).findAny().get();
 	}
-
 
 }

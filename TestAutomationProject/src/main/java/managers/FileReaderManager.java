@@ -4,12 +4,14 @@ package managers;
 
 import dataProviders.ConfigFileReader;
 import dataProviders.JsonDataReader;
+import dataProviders.XMLDataReader;
 
 public class FileReaderManager {
 	
 	private static FileReaderManager frm = new FileReaderManager();
 	private static ConfigFileReader cfg;
 	private static JsonDataReader jdr;
+	private static XMLDataReader xdr;
 	
 	//prevent user from creating instances
 	private FileReaderManager() {
@@ -27,5 +29,9 @@ public class FileReaderManager {
 	
 	public JsonDataReader getJsonReader() {
 		return (jdr == null) ? new JsonDataReader() : jdr; 
+	}
+	
+	public XMLDataReader getXMLReader() {
+		return (xdr == null) ? new XMLDataReader() : xdr; 
 	}
 }

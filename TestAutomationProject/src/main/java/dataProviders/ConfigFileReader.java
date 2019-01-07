@@ -71,8 +71,8 @@ public class ConfigFileReader {
 		return true;
 	}
 	
-	public String getTestDataResourcePath(){
-		String testDataResourcePath = prop.getProperty("testDataResourcePath");
+	public String getDataPath(){
+		String testDataResourcePath = prop.getProperty("dataLoc");
 		if(testDataResourcePath!= null) return testDataResourcePath;
 		else throw new RuntimeException("Config Error: test data resource.");		
 	}

@@ -39,5 +39,5 @@ public class PageObjectManager {
 	public RegistrationConfPage getRegistrationConfPage() {
 		return (rcp == null) ? rcp = new RegistrationConfPage(driver) : rcp;
 	}
-
+	
 }

@@ -6,14 +6,11 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        glue = {"stepDefinitions"},        
-        features = {"src/test/resources/features/ApplicationPages.feature"},
+		features = {"src/test/resources/features/ApplicationPages.feature"},
+        glue = {"stepDefinitions"},                
         plugin = {"html:target/cucumber-reports", "json:target/cucumber-reports/Cucumber.json"}
 )
 
 public class RunnerTest {
-
-	public RunnerTest() {
-	}
 
 }
