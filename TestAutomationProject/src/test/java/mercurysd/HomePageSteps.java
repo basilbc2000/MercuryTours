@@ -1,10 +1,10 @@
-package stepDefinitions;
+package mercurysd;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import managers.TestContext;
-import pageObjects.HomePage;
+import mercurypo.HomePage;
 
 public class HomePageSteps {
 
@@ -13,7 +13,7 @@ public class HomePageSteps {
 	
 	public HomePageSteps(TestContext context) {
 		tc = context;
-		hp = tc.getPageObjectManager().getHomePage();
+		hp = tc.getPageObject().getHomePage();
 	}
 
 	@Given("^user opens the home page$")

@@ -1,4 +1,4 @@
-package pageObjects;
+package mercurypo;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-import managers.FileReaderManager;
+import managers.FileHandlers;
 
 public class HomePage {
 
@@ -48,7 +48,7 @@ public class HomePage {
 	}
 
 	public void open_HomePage() {
-		driver.get(FileReaderManager.getInstance().getConfigReader().getApplicationUrl());
+		driver.get(FileHandlers.handle().configFile().getApplicationUrl());
 	}
 
 	public Boolean is_HomePage() {

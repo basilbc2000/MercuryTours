@@ -1,8 +1,8 @@
-package stepDefinitions;
+package mercurysd;
 
 import cucumber.api.java.en.Then;
 import managers.TestContext;
-import pageObjects.SignOnPage;
+import mercurypo.SignOnPage;
 
 public class SignOnPageSteps {
 
@@ -11,7 +11,7 @@ public class SignOnPageSteps {
 	
 	public SignOnPageSteps(TestContext context) {
 		tc = context;
-		sop = tc.getPageObjectManager().getSignOnPage();
+		sop = tc.getPageObject().getSignOnPage();
 	}
 	
 	@Then("^signon page is opened$")

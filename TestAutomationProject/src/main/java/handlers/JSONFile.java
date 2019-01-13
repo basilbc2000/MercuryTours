@@ -1,4 +1,4 @@
-package dataProviders;
+package handlers;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -7,20 +7,19 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import com.google.gson.Gson;
-import dataStructure.Item;
-import dataStructure.User;
-import managers.FileReaderManager;
+import managers.FileHandlers;
+import mercurydo.User;
 
-public class JsonDataReader {
-	private final String userFilePath = FileReaderManager.getInstance().getConfigReader().getDataPath() + "User.json";
+public class JSONFile {
+	private final String userFilePath = FileHandlers.handle().configFile().getDataPath() + "User.json";
 	private List<User> userList;
 
-	public JsonDataReader(){
-		userList = getUserData();
+	public JSONFile(){
+		userList = getData();
 	}
 
 	
-	private List<User> getUserData() {
+	private List<User> getData() {
 		Gson gson = new Gson();
 		BufferedReader bufferReader = null;
 		try {

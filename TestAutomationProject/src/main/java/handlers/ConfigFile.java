@@ -1,20 +1,19 @@
-package dataProviders;
+package handlers;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
-
 import enums.DriverType;
 import enums.EnvironmentType;
 
-public class ConfigFileReader {
+public class ConfigFile {
 
 	private Properties prop;
-	private final String propertyFilePath= "configs//Configuration.properties";
+	private final String propertyFilePath= "src/test/resources/Configuration.properties";
 
-	public ConfigFileReader(){
+	public ConfigFile(){
 		BufferedReader reader;
 		//Load .properties File
 		try {

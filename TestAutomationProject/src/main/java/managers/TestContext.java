@@ -21,21 +21,21 @@ package managers;
 
 public class TestContext {
 
-	private WebDriverManager wdm;
-	private PageObjectManager pom;
+	private WebDrivers wdm;
+	private PageObjects pom;
 	public ScenarioContext sc;
 	
 	public TestContext() {
-		wdm = new WebDriverManager();
-		pom = new PageObjectManager(wdm.getDriver());
+		wdm = new WebDrivers();
+		pom = new PageObjects(wdm.getDriver());
 		sc = new ScenarioContext();
 	}
 	
-	public WebDriverManager getWebDriverManager() {
+	public WebDrivers getDriver() {
 		return wdm;
 	}
 	
-	public PageObjectManager getPageObjectManager() {
+	public PageObjects getPageObject() {
 		return pom;
 	}
 	

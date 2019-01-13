@@ -1,13 +1,13 @@
-package stepDefinitions;
+package mercurysd;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import dataStructure.User;
 import enums.Context;
-import managers.FileReaderManager;
+import managers.FileHandlers;
 import managers.TestContext;
-import pageObjects.RegistrationPage;
+import mercurydo.User;
+import mercurypo.RegistrationPage;
 
 public class RegistrationPageSteps {
 
@@ -16,12 +16,12 @@ public class RegistrationPageSteps {
 	
 	public RegistrationPageSteps(TestContext context) {
 		tc = context;
-		rp = tc.getPageObjectManager().getRegistrationPage();
+		rp = tc.getPageObject().getRegistrationPage();
 	}
 	
 	@And("^enters basic information for customer \"([^\"]*)\"$")
 	public void enters_basic_information_for_customer(String firstName)  {
-		User user = FileReaderManager.getInstance().getJsonReader().getUserByName(firstName);
+		User user = FileHandlers.handle().jsonFile().getUserByName(firstName);
 		rp.enter_basicInfo(user);
 		tc.sc.setContext(Context.USER_NAME, user.userName);
 	}

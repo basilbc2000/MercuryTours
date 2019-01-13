@@ -13,16 +13,16 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import enums.DriverType;
 import enums.EnvironmentType;
 
-public class WebDriverManager {
+public class WebDrivers {
 
 	private WebDriver driver;
 	private static DriverType driverType;
 	private static EnvironmentType environmentType;
 	private static final String CHROME_DRIVER_PROPERTY = "webdriver.chrome.driver";
 
-	public WebDriverManager() {
-		driverType = FileReaderManager.getInstance().getConfigReader().getBrowser();
-		environmentType = FileReaderManager.getInstance().getConfigReader().getEnvironment();
+	public WebDrivers() {
+		driverType = FileHandlers.handle().configFile().getBrowser();
+		environmentType = FileHandlers.handle().configFile().getEnvironment();
 	}
 
 	public WebDriver getDriver() {
@@ -69,19 +69,19 @@ public class WebDriverManager {
 	}
 
 	private WebDriver createLocalDriver() {
+		
 		switch (driverType) {	    
-		case FIREFOX : driver = new FirefoxDriver();
-		break;
+		
+		case FIREFOX : driver = new FirefoxDriver(); break;
+		case INTERNETEXPLORER : driver = new InternetExplorerDriver(); break;
+		
 		case CHROME : 
-			System.setProperty(CHROME_DRIVER_PROPERTY, FileReaderManager.getInstance().getConfigReader().getDriverPath());
-			driver = new ChromeDriver();
-			break;
-		case INTERNETEXPLORER : driver = new InternetExplorerDriver();
-		break;
+			System.setProperty(CHROME_DRIVER_PROPERTY, FileHandlers.handle().configFile().getDriverPath());
+			driver = new ChromeDriver(); break;					
 		}
 
-		if(FileReaderManager.getInstance().getConfigReader().getBrowserWindowSize()) driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(FileReaderManager.getInstance().getConfigReader().getImplicitlyWait(), TimeUnit.SECONDS);
+		if(FileHandlers.handle().configFile().getBrowserWindowSize()) driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(FileHandlers.handle().configFile().getImplicitlyWait(), TimeUnit.SECONDS);
 		return driver;
 	}	
 

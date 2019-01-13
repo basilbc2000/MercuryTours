@@ -4,12 +4,13 @@
 package managers;
 
 import org.openqa.selenium.WebDriver;
-import pageObjects.HomePage;
-import pageObjects.RegistrationConfPage;
-import pageObjects.RegistrationPage;
-import pageObjects.SignOnPage;
 
-public class PageObjectManager {
+import mercurypo.HomePage;
+import mercurypo.RegistrationConfPage;
+import mercurypo.RegistrationPage;
+import mercurypo.SignOnPage;
+
+public class PageObjects {
 
 	private WebDriver driver;
 	private HomePage hp;
@@ -17,7 +18,7 @@ public class PageObjectManager {
 	private RegistrationPage rp;
 	private RegistrationConfPage rcp;
 	
-	public PageObjectManager (WebDriver driver) {
+	public PageObjects (WebDriver driver) {
 		this.driver = driver;
 		//Add the following line to create the object
 		//PageObjectManager pom = new PageObjectManager(driver);

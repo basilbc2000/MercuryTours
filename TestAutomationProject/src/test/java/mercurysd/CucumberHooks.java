@@ -1,13 +1,13 @@
-package stepDefinitions;
+package mercurysd;
 
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import managers.TestContext;
 
-public class Hooks {
+public class CucumberHooks {
 
 	TestContext tc;
-	public Hooks(TestContext context) {
+	public CucumberHooks(TestContext context) {
 		tc = context;
 	}
 
@@ -19,6 +19,6 @@ public class Hooks {
 	@After
 	public void AfterSteps() {
 		System.out.println("Ending Test...");
-		tc.getWebDriverManager().closeDriver();
+		tc.getDriver().closeDriver();
 	}
 }

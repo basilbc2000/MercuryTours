@@ -1,6 +1,6 @@
 //http://www.jsonschema2pojo.org/
 
-package dataStructure;
+package mercurydo;
 
 public class User {
 	

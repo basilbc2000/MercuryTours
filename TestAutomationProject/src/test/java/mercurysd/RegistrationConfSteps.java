@@ -1,10 +1,10 @@
-package stepDefinitions;
+package mercurysd;
 
 import org.junit.Assert;
 import cucumber.api.java.en.Then;
 import enums.Context;
 import managers.TestContext;
-import pageObjects.RegistrationConfPage;
+import mercurypo.RegistrationConfPage;
 
 public class RegistrationConfSteps {
 
@@ -13,7 +13,7 @@ public class RegistrationConfSteps {
 	
 	public RegistrationConfSteps(TestContext context) {
 		tc = context;
-		rcp = tc.getPageObjectManager().getRegistrationConfPage();
+		rcp = tc.getPageObject().getRegistrationConfPage();
 	}
 
 	@Then("^confirmation page is opened$")
