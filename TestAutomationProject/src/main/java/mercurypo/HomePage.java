@@ -48,6 +48,7 @@ public class HomePage {
 	}
 
 	public void open_HomePage() {
+		log.debug("");
 		driver.get(FileHandlers.handle().configFile().getApplicationUrl());
 	}
 

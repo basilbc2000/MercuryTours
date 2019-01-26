@@ -116,7 +116,7 @@
 						</executions>
 						<configuration>
 							<sourceRunnerTemplateFile>src/test/resources/CucableRunner.template</sourceRunnerTemplateFile>
-							<sourceFeatures>src/test/resources/features/ApplicationPages.feature</sourceFeatures>
+							<sourceFeatures>src/test/resources/application/features/ApplicationPages.feature</sourceFeatures>
 							<generatedFeatureDirectory>${generated.feature.directory}</generatedFeatureDirectory>
 							<generatedRunnerDirectory>${generated.runner.directory}</generatedRunnerDirectory>
 						</configuration>

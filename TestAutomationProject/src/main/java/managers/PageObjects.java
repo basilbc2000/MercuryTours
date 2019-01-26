@@ -10,6 +10,7 @@ import mercurypo.RegistrationConfPage;
 import mercurypo.RegistrationPage;
 import mercurypo.SignOnPage;
 
+
 public class PageObjects {
 
 	private WebDriver driver;

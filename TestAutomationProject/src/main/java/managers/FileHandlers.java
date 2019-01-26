@@ -3,14 +3,14 @@
 package managers;
 
 import handlers.ConfigFile;
-import handlers.JSONFile;
+import handlers.GSONFileReader;
 import handlers.XMLFile;
 
 public class FileHandlers {
 	
 	private static FileHandlers fh = new FileHandlers();
 	private static ConfigFile cfh;
-	private static JSONFile jfh;
+	private static GSONFileReader jfh;
 	private static XMLFile xfh;
 	
 	//prevent user from creating instances
@@ -27,8 +27,8 @@ public class FileHandlers {
 		return (cfh == null) ? new ConfigFile() : cfh; 
 	}
 	
-	public JSONFile jsonFile() {
-		return (jfh == null) ? new JSONFile() : jfh; 
+	public GSONFileReader jsonFile() {
+		return (jfh == null) ? new GSONFileReader() : jfh; 
 	}
 	
 	public XMLFile xmlFile() {

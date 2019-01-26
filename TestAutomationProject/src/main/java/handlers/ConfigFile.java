@@ -57,7 +57,7 @@ public class ConfigFile {
 		else throw new RuntimeException("Config Error: browser: (" + browserName +")");
 	}
 
-	public EnvironmentType getEnvironment() {
+	public EnvironmentType getRunLocation() {
 		String environmentName = prop.getProperty("environment");
 		if(environmentName == null || environmentName.equalsIgnoreCase("local")) return EnvironmentType.LOCAL;
 		else if(environmentName.equals("remote")) return EnvironmentType.REMOTE;
@@ -74,6 +74,18 @@ public class ConfigFile {
 		String testDataResourcePath = prop.getProperty("dataLoc");
 		if(testDataResourcePath!= null) return testDataResourcePath;
 		else throw new RuntimeException("Config Error: test data resource.");		
+	}
+	
+	public String getHubUrl(){
+		String url = prop.getProperty("hubUrl");
+		if(url!= null) return url;
+		else throw new RuntimeException("Config Error: Hub Url.");		
+	}
+	
+	public String getResourcePath(){
+		String loc = prop.getProperty("resourcePath");
+		if(loc!= null) return loc;
+		else throw new RuntimeException("Config Error: Resource Path.");		
 	}
 
 }
