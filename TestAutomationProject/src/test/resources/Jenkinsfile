@@ -2,7 +2,8 @@
 
 node('master') {
     stage('Checkout') {
-        echo 'Code checkout'
+        echo 'Code checkout'        
+        git 'http://localhost:3000/basil/MercuryTours.git'
     }
     
     stage('Run tests') {
