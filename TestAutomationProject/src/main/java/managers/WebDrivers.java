@@ -134,7 +134,6 @@ public class WebDrivers {
 
 		if (isMaximize) wd.manage().window().maximize();
 		wd.manage().timeouts().implicitlyWait(delay,TimeUnit.SECONDS);
-
 		return wd;
 	}
 
