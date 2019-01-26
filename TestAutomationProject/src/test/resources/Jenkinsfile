@@ -13,21 +13,47 @@ node('master') {
     }
     
     stage('Run tests') {
+    
         echo 'Running tests'
         
-        dir("TestAutomationProject") {                              
-			try {     	
-            bat "mvn -f TestAutomationProject\\pom.xml clean test"
-       	 	} catch (err) {
-            
-        	} finally {
-            	publishHTML (target: [
-            	reportDir: 'TestAutomationProject/target/cucumber-reports',
-            	reportFiles: 'index.html',
-            	reportName: "Smoke tests report"
-            	])
+        parallel {
+        
+        	stage("Chrome") {
+        			echo 'Chrome'
+        			dir("TestAutomationProject") {                              
+					try {     	
+            		bat "mvn -f TestAutomationProject\\pom.xml clean test"
+       	 			} catch (err) {
+            	
+        			} finally {
+            			publishHTML (target: [
+            			reportDir: 'TestAutomationProject/target/cucumber-reports',
+            			reportFiles: 'index.html',
+            			reportName: "Smoke tests report"
+            			])
+        			}
+        		}
+        		    
         	}
-        }
+        	
+        	stage("Firefox") {
+        			echo 'Firefox'
+        			dir("TestAutomationProject") {                              
+					try {     	
+            		bat "mvn -f TestAutomationProject\\pom.xml clean test"
+       	 			} catch (err) {
+            	
+        			} finally {
+            			publishHTML (target: [
+            			reportDir: 'TestAutomationProject/target/cucumber-reports',
+            			reportFiles: 'index.html',
+            			reportName: "Smoke tests report"
+            			])
+        			}
+        		}
+        		    
+        	}        	        	        	                            
+        }        
                
     }
 }
