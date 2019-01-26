@@ -2,13 +2,14 @@
 
 node('master') {
     stage('Checkout') {
-        echo 'Code checkout'        
-        def exists = fileExists 'TestAutomationProject'
+        echo 'Code checkout'
+        String path = pwd()               
+        def exists = fileExists ${path}+'TestAutomationProject'
 		if (!exists){
-    		new File('TestAutomationProject').mkdir()
+    		new File(${path}+'TestAutomationProject').mkdir()
 		}
 		
-		dir ('TestAutomationProject') {
+		dir (${path}+'TestAutomationProject') {
   				git url: 'http://localhost:3000/basil/MercuryTours.git'
 		}
     }
