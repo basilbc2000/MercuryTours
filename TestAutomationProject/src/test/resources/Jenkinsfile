@@ -16,19 +16,18 @@ node('master') {
         echo 'Running tests'
         
         dir("TestAutomationProject") {                              
-      		bat chdir
-        }
-        
-        try {     	
+			try {     	
             bat "mvn -f TestAutomationProject\\pom.xml clean test"
-        } catch (err) {
+       	 	} catch (err) {
             
-        } finally {
-            publishHTML (target: [
-            reportDir: 'target/test-report',
-            reportFiles: 'index.html',
-            reportName: "Smoke tests report"
-            ])
+        	} finally {
+            	publishHTML (target: [
+            	reportDir: 'target/test-report',
+            	reportFiles: 'index.html',
+            	reportName: "Smoke tests report"
+            	])
+        	}
         }
+               
     }
 }
