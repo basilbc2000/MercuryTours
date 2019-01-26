@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 import enums.DriverType;
-import enums.EnvironmentType;
+import enums.RunLocation;
 
 public class ConfigFile {
 
@@ -57,10 +57,10 @@ public class ConfigFile {
 		else throw new RuntimeException("Config Error: browser: (" + browserName +")");
 	}
 
-	public EnvironmentType getRunLocation() {
+	public RunLocation getRunLocation() {
 		String environmentName = prop.getProperty("environment");
-		if(environmentName == null || environmentName.equalsIgnoreCase("local")) return EnvironmentType.LOCAL;
-		else if(environmentName.equals("remote")) return EnvironmentType.REMOTE;
+		if(environmentName == null || environmentName.equalsIgnoreCase("local")) return RunLocation.LOCAL;
+		else if(environmentName.equals("remote")) return RunLocation.REMOTE;
 		else throw new RuntimeException("Config Error: environment: (" + environmentName + ")");
 	}
 

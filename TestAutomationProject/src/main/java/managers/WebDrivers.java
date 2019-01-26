@@ -18,15 +18,15 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import enums.DriverType;
-import enums.EnvironmentType;
+import enums.RunLocation;
 import managers.FileHandlers;
 
 public class WebDrivers {
 
-	private WebDriver driver;
-	private RemoteWebDriver rDriver;
-	private static DriverType driverType;
-	private static EnvironmentType runLocation;
+	private WebDriver wd;
+	private RemoteWebDriver rwd;
+	private static DriverType dtyp;
+	private static RunLocation rloc;
 	private static Boolean isHeadless, isMaximize;
 	private static String url, path;
 	private static Long delay;
@@ -34,52 +34,52 @@ public class WebDrivers {
 
 	public WebDrivers() {
 
-		driverType = FileHandlers.handle().configFile().getBrowser();
-		runLocation = FileHandlers.handle().configFile().getRunLocation();
+		dtyp = FileHandlers.handle().configFile().getBrowser();
+		rloc = FileHandlers.handle().configFile().getRunLocation();
 		// isHeadless = FileHandlers.handle().configFile().isHeadless();
 		isMaximize = FileHandlers.handle().configFile().getBrowserWindowSize();
 		delay = FileHandlers.handle().configFile().getImplicitlyWait();
 
-		log.info("Key Configs:" + "runLocation:" + runLocation + ",driverType:" + driverType + ",isHeadless:"
+		log.info("Key Configs:" + "rloc:" + rloc + ",dtyp:" + dtyp + ",isHeadless:"
 				+ isHeadless + ",isMaximize:" + isMaximize);
 	}
 
 	public WebDriver getDriver() {
-		if (driver == null)
-			driver = createDriver();
-		return driver;
+		if (wd == null)
+			wd = createDriver();
+		return wd;
 	}
 
 	private WebDriver createDriver() {
 
 		log.debug("");
 
-		switch (runLocation) {
+		switch (rloc) {
 		case LOCAL:
 			path = FileHandlers.handle().configFile().getDriverPath();
 			log.debug(path);
-			driver = createLocalDriver();
+			wd = createLocalDriver();
 			break;
 		case REMOTE:
 			url = FileHandlers.handle().configFile().getHubUrl();
 			log.info("Hub URL: " + url);
-			driver = createRemoteDriver();
+			wd = createRemoteDriver();
 			break;
 		}
-		return driver;
+		return wd;
 	}
 
 	private WebDriver createRemoteDriver() {
 
 		// throw new RuntimeException("RemoteWebDriver is not yet implemented");
 		// Capabilities chromeCapabilities = DesiredCapabilities.chrome();
-		Capabilities firefoxCapabilities = DesiredCapabilities.firefox();
-		RemoteWebDriver /* chrome, */ firefox = null;
+		Capabilities fcap = DesiredCapabilities.firefox();
+		RemoteWebDriver /* chrome, */ frwd = null;
 
 		try {
 			// chrome = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),
 			// chromeCapabilities);
-			firefox = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), firefoxCapabilities);
+			frwd = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), fcap);
 			// run against chrome
 			// chrome.get("https://www.google.com");
 			// System.out.println(chrome.getTitle());
@@ -95,53 +95,51 @@ public class WebDrivers {
 			e.printStackTrace();
 		}
 
-		return firefox;
+		return frwd;
 	}
 
 	private WebDriver createLocalDriver() {
 
-		switch (driverType) {
+		switch (dtyp) {
 
 		case FIREFOX:
-			ProfilesIni profile = new ProfilesIni();
-			FirefoxProfile ffprofile = profile.getProfile("TestProfile");
-			System.setProperty("webdriver.gecko.driver", path + "geckodriver.exe");
-			FirefoxOptions options = new FirefoxOptions();
-			options.setProfile(ffprofile);
-			if (isHeadless)
-				options.setHeadless(true);
-			options.setCapability(FirefoxOptions.FIREFOX_OPTIONS, options);
-			driver = new FirefoxDriver(options);
+			ProfilesIni p = new ProfilesIni();
+			FirefoxProfile fp = p.getProfile("TestProfile");
+			System.setProperty("webdriver.gecko.wd", path + "geckodriver.exe");
+			FirefoxOptions fo = new FirefoxOptions();
+			fo.setProfile(fp);
+			if (isHeadless) fo.setHeadless(true);
+			fo.setCapability(FirefoxOptions.FIREFOX_OPTIONS, fo);
+			wd = new FirefoxDriver(fo);
 			break;
 
 		case CHROME:
 			log.debug("");
-			ChromeOptions cOptions = new ChromeOptions();
-			cOptions.setCapability(ChromeOptions.CAPABILITY, cOptions);
-			System.setProperty("webdriver.chrome.driver", path + "chromedriver.exe");
-			// if (isHeadless) cOptions.setHeadless(true);
-			driver = new ChromeDriver(cOptions);
+			ChromeOptions co = new ChromeOptions();
+			co.setCapability(ChromeOptions.CAPABILITY, co);
+			System.setProperty("webdriver.chrome.wd", path + "chromedriver.exe");
+			// if (isHeadless) co.setHeadless(true);
+			wd = new ChromeDriver(co);
 			break;
 
 		case INTERNETEXPLORER:
-			driver = new InternetExplorerDriver();
+			wd = new InternetExplorerDriver();
 			break;
 
 		case EDGE:
-			System.setProperty("webdriver.edge.driver", path + "MicrosoftWebDriver.exe");
-			driver = new EdgeDriver();
+			System.setProperty("webdriver.edge.wd", path + "MicrosoftWebDriver.exe");
+			wd = new EdgeDriver();
 			break;
 		}
 
-		// if (isMaximize) driver.manage().window().maximize();
-		// driver.manage().timeouts().implicitlyWait(delay,TimeUnit.SECONDS);
-		// driver.get("www.google.com");
+		if (isMaximize) wd.manage().window().maximize();
+		wd.manage().timeouts().implicitlyWait(delay,TimeUnit.SECONDS);
 
-		return driver;
+		return wd;
 	}
 
 	public void closeDriver() {
-		driver.quit();
+		wd.quit();
 	}
 
 }

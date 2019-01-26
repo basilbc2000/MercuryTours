@@ -12,24 +12,24 @@ Examples:
 |user name|password|
 |sample|test|
 |simple|toast|
-|sea|coast|
-|simple|toast|
-|sea|coast|
-|sample|test|
-|simple|toast|
-|sea|coast|
-|simple|toast|
-|sea|coast|
-|sample|test|
-|simple|toast|
-|sea|coast|
-|simple|toast|
-|sea|coast|
-|sample|test|
-|simple|toast|
-|sea|coast|
-|simple|toast|
-|sea|coast|
+#|sea|coast|
+#|simple|toast|
+#|sea|coast|
+#|sample|test|
+#|simple|toast|
+#|sea|coast|
+#|simple|toast|
+#|sea|coast|
+#|sample|test|
+#|simple|toast|
+#|sea|coast|
+#|simple|toast|
+#|sea|coast|
+#|sample|test|
+#|simple|toast|
+#|sea|coast|
+#|simple|toast|
+#|sea|coast|
 
 #Scenario: User opens registration page
 #	Given user opens the home page
