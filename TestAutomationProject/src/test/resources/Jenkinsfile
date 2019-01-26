@@ -6,16 +6,14 @@ node('master') {
         def exists = fileExists 'TestAutomationProject'
 		if (!exists){
     		new File('TestAutomationProject').mkdir()
-		}
-		
+		}		
 		dir ('TestAutomationProject') {
   				git url: 'http://localhost:3000/basil/MercuryTours.git'
 		}
     }
     
     stage('Run tests') {
-        echo 'Running tests'
-        
+        echo 'Running tests'        
         try {
             bat "mvn -f TestAutomationProject\\pom.xml clean test"
         } catch (err) {
