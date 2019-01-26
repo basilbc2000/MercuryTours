@@ -9,7 +9,7 @@ node('master') {
         echo 'Running tests'
         
         try {
-            bat "mvn test"
+            bat "mvn -f TestAutomationProject/pom.xml clean test"
         } catch (err) {
             
         } finally {
