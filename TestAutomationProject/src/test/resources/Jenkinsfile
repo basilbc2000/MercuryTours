@@ -13,9 +13,13 @@ node('master') {
     }
     
     stage('Run tests') {
-        echo 'Running tests'        
-        try {
-        	cd TestAutomationProject        	
+        echo 'Running tests'
+        
+        dir("TestAutomationProject") {                              
+      		bat chdir
+        }
+        
+        try {     	
             bat "mvn -f TestAutomationProject\\pom.xml clean test"
         } catch (err) {
             
