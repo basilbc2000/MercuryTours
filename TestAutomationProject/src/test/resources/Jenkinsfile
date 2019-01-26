@@ -7,5 +7,17 @@ node('master') {
     
     stage('Run tests') {
         echo 'Running tests'
+        
+        try {
+            bat "mvn test"
+        } catch (err) {
+            
+        } finally {
+            publishHTML (target: [
+            reportDir: 'target/test-report',
+            reportFiles: 'index.html',
+            reportName: "Smoke tests report"
+            ])
+        }
     }
 }
