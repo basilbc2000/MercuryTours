@@ -105,7 +105,7 @@ public class WebDrivers {
 		case FIREFOX:
 			ProfilesIni p = new ProfilesIni();
 			FirefoxProfile fp = p.getProfile("TestProfile");
-			System.setProperty("webdriver.gecko.wd", path + "geckodriver.exe");
+			System.setProperty("webdriver.gecko.driver", path + "geckodriver.exe");
 			FirefoxOptions fo = new FirefoxOptions();
 			fo.setProfile(fp);
 			if (isHeadless) fo.setHeadless(true);
@@ -117,7 +117,7 @@ public class WebDrivers {
 			log.debug("");
 			ChromeOptions co = new ChromeOptions();
 			co.setCapability(ChromeOptions.CAPABILITY, co);
-			System.setProperty("webdriver.chrome.wd", path + "chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", path + "chromedriver.exe");
 			// if (isHeadless) co.setHeadless(true);
 			wd = new ChromeDriver(co);
 			break;
@@ -127,7 +127,7 @@ public class WebDrivers {
 			break;
 
 		case EDGE:
-			System.setProperty("webdriver.edge.wd", path + "MicrosoftWebDriver.exe");
+			System.setProperty("webdriver.edge.driver", path + "MicrosoftWebDriver.exe");
 			wd = new EdgeDriver();
 			break;
 		}
