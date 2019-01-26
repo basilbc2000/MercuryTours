@@ -17,7 +17,7 @@ node('master') {
         echo 'Running tests'
         
         try {
-            bat "mvn -f F:\\automation\\jenkins\\.jenkins\\workspace\\functional_tests\\TestAutomationProject\\pom.xml clean test"
+            bat "mvn -f TestAutomationProject/pom.xml clean test"
         } catch (err) {
             
         } finally {
