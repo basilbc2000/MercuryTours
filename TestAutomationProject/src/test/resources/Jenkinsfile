@@ -22,7 +22,7 @@ node('master') {
             
         	} finally {
             	publishHTML (target: [
-            	reportDir: 'target/test-report',
+            	reportDir: 'TestAutomationProject/target/test-report',
             	reportFiles: 'index.html',
             	reportName: "Smoke tests report"
             	])
