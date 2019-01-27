@@ -59,7 +59,9 @@ pipeline {
 				success {					
 					dir("TestAutomationProject") {
 						script {
-							cucumber fileIncludePattern: '**/cucumber-*.json', parallelTesting: true
+							//cucumber fileIncludePattern: '**/cucumber-*.json', parallelTesting: true
+							cucumber fileIncludePattern: '**/*_scenario*.json', parallelTesting: true
+							//bat 'mvn cluecumber-report:reporting'
 						}
 					}
 				}
