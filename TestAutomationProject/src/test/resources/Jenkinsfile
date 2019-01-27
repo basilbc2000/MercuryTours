@@ -24,7 +24,7 @@ pipeline {
 						script {
 							dir("TestAutomationProject") {
 								try {
-									bat "mvn -f TestAutomationProject\\pom.xml clean test -Dcucumber.options='--tags @smoke01'"
+									bat 'mvn -f TestAutomationProject\\pom.xml clean test -Dcucumber.options="--tags @smoke01"'
 								} catch (err) {
 								} finally {
 									publishHTML (target: [
@@ -44,7 +44,7 @@ pipeline {
 						script {
 							dir("TestAutomationProject") {
 								try {
-									bat "mvn -f TestAutomationProject\\pom.xml clean test -Dcucumber.options='--tags @smoke02'"
+									bat 'mvn -f TestAutomationProject\\pom.xml clean test -Dcucumber.options="--tags @smoke02"'
 								} catch (err) {
 								} finally {
 									publishHTML (target: [
