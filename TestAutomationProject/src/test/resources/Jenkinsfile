@@ -56,7 +56,7 @@ pipeline {
 				success {
 					echo 'Generate Report'
 					script {
-						cucumber fileIncludePattern: '/target/cucumber-reports/Cucumber.json', sortingMethod: 'ALPHABETICAL'
+						cucumber fileIncludePattern: '**/*.json', sortingMethod: 'ALPHABETICAL'
 					}
 				}
 			}
