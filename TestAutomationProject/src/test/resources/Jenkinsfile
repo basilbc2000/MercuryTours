@@ -41,19 +41,20 @@ pipeline {
 								} catch (err) {} 
 							}
 						}
+					}p
+				}
+			}
+		}
+		
+		stage('Post') {
+			post {
+				success {
+					echo 'Generate Report'
+					script {
+						cucumber fileIncludePattern: '**/target/cucumber-report.json', sortingMethod: 'ALPHABETICAL'
 					}
 				}
 			}
 		}
-
-		post {
-			success {
-				echo 'Generate Report'
-				script {
-					cucumber fileIncludePattern: '**/target/cucumber-report.json', sortingMethod: 'ALPHABETICAL'
-				}
-			}
-		}
-
 	}
 }
