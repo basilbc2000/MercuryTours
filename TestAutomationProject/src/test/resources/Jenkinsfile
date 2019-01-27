@@ -24,7 +24,8 @@ pipeline {
 						script {
 							dir("TestAutomationProject") {
 								try {
-									bat 'mvn -f TestAutomationProject\\pom.xml clean test -Dcucumber.options="--tags @smoke01"'
+									bat 'mvn -f TestAutomationProject\\pom.xml clean test -Dcucumber.options="--tags @smoke01" -Dcucumber.options=\"--plugin json:target/cucumber-firefox.json'
+									cucumber fileIncludePattern: '**/cucumber-*.json', parallelTesting: true
 								} catch (err) {} 
 							}
 						}
@@ -37,35 +38,14 @@ pipeline {
 						script {
 							dir("TestAutomationProject") {
 								try {
-									bat 'mvn -f TestAutomationProject\\pom.xml clean test -Dcucumber.options="--tags @smoke02"'
+									bat 'mvn -f TestAutomationProject\\pom.xml clean test -Dcucumber.options="--tags @smoke02" -Dcucumber.options=\"--plugin json:target/cucumber-chrome.json'
+									cucumber fileIncludePattern: '**/cucumber-*.json', parallelTesting: true
 								} catch (err) {} 
 							}
 						}
 					}
 				}
 			}
-		}
-		
-		stage('Post') {
-		
-			steps {
-			    echo 'Running post build actions'			    
-			}
-
-			post {
-				success {
-					echo 'Generate Report'
-					dir("TestAutomationProject") {
-						script {
-							def ReportPath = "${pwd()}/target/cucumber-reports"
-							def JSONPath = "${pwd()}/target/cucumber-reports/Cucumber.json"
-							echo JSONPath
-							echo ReportPath
-							cucumber fileIncludePattern: '**/TestAutomationProject/target/cucumber-reports/Cucumber.json', sortingMethod: 'ALPHABETICAL'
-						}
-					}
-				}
-			}
-		}
+		}		
 	}
 }
