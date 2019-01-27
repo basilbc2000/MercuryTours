@@ -46,20 +46,11 @@ pipeline {
 			}
 		}
 
-		stage ('Report') {
-			steps {
+		post {
+			success {
 				echo 'Generate Report'
 				script {
-					def exists = fileExists 'TestAutomationProject'
-					if (exists){
-						dir ('TestAutomationProject') {
-							publishHTML (target: [
-								reportDir: 'TestAutomationProject/target/cucumber-reports',
-								reportFiles: 'index.html',
-								reportName: "Test Report"
-							])
-						}
-					}
+					cucumber fileIncludePattern: '**/target/cucumber-report.json', sortingMethod: 'ALPHABETICAL'
 				}
 			}
 		}
