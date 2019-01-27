@@ -25,7 +25,8 @@ pipeline {
 						script {
 							dir("TestAutomationProject") {
 								try {
-									bat 'mvn -f TestAutomationProject\\pom.xml test verify -Drun=para -Dfork=2 -Dcucumber.options="--tags @smoke01 --plugin json:target/cucumber-firefox.json'
+									//bat 'mvn -f TestAutomationProject\\pom.xml test -Dcucumber.options="--tags @smoke01 --plugin json:target/cucumber-firefox.json"'
+									bat 'mvn -f TestAutomationProject\\pom.xml test verify -Drun=para -Dfork=2 -Dcucumber.options="--tags @smoke01"'
 									//cucumber fileIncludePattern: '**/cucumber-*.json', parallelTesting: true
 								} catch (err) {} 
 							}
@@ -39,7 +40,8 @@ pipeline {
 						script {
 							dir("TestAutomationProject") {
 								try {								
-									bat 'mvn -f TestAutomationProject\\pom.xml test verify -Drun=para -Dfork=2 -Dcucumber.options="--tags @smoke02 --plugin json:target/cucumber-chrome.json'
+									//bat 'mvn -f TestAutomationProject\\pom.xml test -Dcucumber.options="--tags @smoke02 --plugin json:target/cucumber-chrome.json"'
+									bat 'mvn -f TestAutomationProject\\pom.xml test verify -Drun=para -Dfork=2 -Dcucumber.options="--tags @smoke02"'
 									//cucumber fileIncludePattern: '**/cucumber-*.json', parallelTesting: true
 								} catch (err) {} 
 							}
