@@ -1,7 +1,7 @@
 pipeline {
 	agent any
 	stages {
-		stage ('Checkout') {
+		stage ('Checkout Code') {
 			steps {
 				echo 'Code checkout' 
 				script {
@@ -11,20 +11,21 @@ pipeline {
 					}
 					dir ('TestAutomationProject') {
 						git url: 'http://localhost:3000/basil/MercuryTours.git'
+						bat 'mvn -f TestAutomationProject\\pom.xml clean'
 					}
 				}
 			}
 		}
 
-		stage ('Sanity') {
+		stage ('Sanity Tests') {
 			parallel {
 				stage('Firefox') {
 					steps {
-						echo 'Run in Firefox'
+						echo '****** FIREFOX ******'
 						script {
 							dir("TestAutomationProject") {
 								try {
-									bat 'mvn -f TestAutomationProject\\pom.xml clean test -Dcucumber.options="--tags @smoke01" -Dcucumber.options=\"--plugin json:target/cucumber-firefox.json'
+									bat 'mvn -f TestAutomationProject\\pom.xml test -Dcucumber.options="--tags @smoke01" -Dcucumber.options=\"--plugin json:target/cucumber-firefox.json'
 									cucumber fileIncludePattern: '**/cucumber-*.json', parallelTesting: true
 								} catch (err) {} 
 							}
@@ -34,11 +35,11 @@ pipeline {
 
 				stage('Chrome') {
 					steps {
-						echo 'Run in Chrome'
+						echo '****** CHROME ******'
 						script {
 							dir("TestAutomationProject") {
-								try {
-									bat 'mvn -f TestAutomationProject\\pom.xml clean test -Dcucumber.options="--tags @smoke02" -Dcucumber.options=\"--plugin json:target/cucumber-chrome.json'
+								try {								
+									bat 'mvn -f TestAutomationProject\\pom.xml test -Dcucumber.options="--tags @smoke02" -Dcucumber.options=\"--plugin json:target/cucumber-chrome.json'
 									cucumber fileIncludePattern: '**/cucumber-*.json', parallelTesting: true
 								} catch (err) {} 
 							}
