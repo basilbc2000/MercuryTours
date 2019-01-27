@@ -1,5 +1,7 @@
 package mercurysd;
 
+import org.junit.Assert;
+
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
@@ -34,7 +36,8 @@ public class HomePageSteps {
 
 	@When("^login button is clicked$")
 	public void login_button_is_clicked()  {
-		hp.click_login();	   
+		hp.click_login();		
+		Assert.assertTrue(false);
 	}
 	
 	@And("^register link is clicked$")

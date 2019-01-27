@@ -12,6 +12,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+
 import com.google.common.io.Files;
 //import com.vimalselvam.cucumber.listener.Reporter;
 import cucumber.api.Scenario;
@@ -19,6 +21,7 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import managers.FileHandlers;
 import managers.TestContext;
+import managers.WebDrivers;
 
 public class CucumberHooks {
 
@@ -36,9 +39,12 @@ public class CucumberHooks {
 	
 	@After
 	public void AfterSteps(Scenario scenario) {
+				
 		
 		if (scenario.isFailed()) {
 			String screenshotName = scenario.getName().replaceAll("\\s+", "_").toUpperCase();
+			WebDriver driver =  tc.getDriver().getDriver();
+			scenario.embed(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES), "image/png");			
 			
 			try {
 				
