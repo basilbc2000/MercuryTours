@@ -32,7 +32,7 @@ steps {
             			publishHTML (target: [
             			reportDir: 'TestAutomationProject/target/cucumber-reports',
             			reportFiles: 'index.html',
-            			reportName: "Smoke tests report"
+            			reportName: "SmokeFirefox"
             			])
         			}
         			}
@@ -52,7 +52,7 @@ steps {
             			publishHTML (target: [
             			reportDir: 'TestAutomationProject/target/cucumber-reports',
             			reportFiles: 'index.html',
-            			reportName: "Smoke tests report"
+            			reportName: "SmokeChrome"
             			])
         			}
         			}
