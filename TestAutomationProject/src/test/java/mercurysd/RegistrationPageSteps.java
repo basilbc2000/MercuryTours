@@ -26,6 +26,7 @@ public class RegistrationPageSteps {
 		User user = FileHandlers.handle().jsonFile().getUserByName(firstName);
 		rp.enter_basicInfo(user);
 		tc.sc.setContext(Context.USER_NAME, user.userName);
+		Assert.assertTrue(false);
 	}
 	
 	@When("^submit is clicked$")
@@ -36,7 +37,6 @@ public class RegistrationPageSteps {
 	@Then("^registration page is opened$")
 	public void registration_page_is_opened()  {
 		rp.is_RegistrationPage();
-		Assert.assertTrue(false);
 	}
 
 }
