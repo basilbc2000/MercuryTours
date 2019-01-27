@@ -1,6 +1,7 @@
 Feature: User Registration
+Description: User should be able to register using portal
 
-@testing
+@smoke02
 Scenario Outline: User performs registration
 	Given user opens the home page
 	And register link is clicked

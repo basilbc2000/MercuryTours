@@ -1,65 +1,63 @@
-#!groovy
-
 pipeline {
-agent any
-stages {
-stage ('checkout') {
-steps {
-  		echo 'Code checkout' 
-  		script {
-        def exists = fileExists 'TestAutomationProject'
-		if (!exists){
-    		new File('TestAutomationProject').mkdir()
-		}		
-		dir ('TestAutomationProject') {
-  				git url: 'http://localhost:3000/basil/MercuryTours.git'
+	agent any
+	stages {
+		stage ('checkout') {
+			steps {
+				echo 'Code checkout' 
+				script {
+					def exists = fileExists 'TestAutomationProject'
+					if (!exists){
+						new File('TestAutomationProject').mkdir()
+					}
+					dir ('TestAutomationProject') {
+						git url: 'http://localhost:3000/basil/MercuryTours.git'
+					}
+				}
+			}
 		}
+
+		stage ('sanity') {
+			parallel {
+				stage('Firefox') {
+					steps {
+						echo 'Run in Firefox'
+						script {
+							dir("TestAutomationProject") {
+								try {
+									bat "mvn -f TestAutomationProject\\pom.xml clean test -Dcucumber.options='-tags @smoke01'"
+								} catch (err) {
+								} finally {
+									publishHTML (target: [
+									reportDir: 'TestAutomationProject/target/cucumber-reports',
+									reportFiles: 'index.html',
+									reportName: "SmokeFirefox"
+									])
+								}
+							}
+						}
+					}
+				}
+
+				stage('Chrome') {
+					steps {
+						echo 'Run in Chrome'
+						script {
+							dir("TestAutomationProject") {
+								try {
+									bat "mvn -f TestAutomationProject\\pom.xml clean test -Dcucumber.options='-tags @smoke02'"
+								} catch (err) {
+								} finally {
+									publishHTML (target: [
+									reportDir: 'TestAutomationProject/target/cucumber-reports',
+									reportFiles: 'index.html',
+									reportName: "SmokeChrome"
+									])
+								}
+							}
+						}
+					}
+				}
+			}
 		}
-}
-}
-stage ('smoke') {
-parallel {
-stage('Firefox') {
-steps {
-					echo 'Run in Firefox'
-					script {
-					dir("TestAutomationProject") {                              
-					try {     	
-            		bat "mvn -f TestAutomationProject\\pom.xml clean test"
-       	 			} catch (err) {
-            	
-        			} finally {
-            			publishHTML (target: [
-            			reportDir: 'TestAutomationProject/target/cucumber-reports',
-            			reportFiles: 'index.html',
-            			reportName: "SmokeFirefox"
-            			])
-        			}
-        			}
-        			}
-}
-}
-stage('Chrome') {
-steps {
-					echo 'Run in Chrome'
-					script {					
-					dir("TestAutomationProject") {                              
-					try {     	
-            		bat "mvn -f TestAutomationProject\\pom.xml clean test"
-       	 			} catch (err) {
-            	
-        			} finally {
-            			publishHTML (target: [
-            			reportDir: 'TestAutomationProject/target/cucumber-reports',
-            			reportFiles: 'index.html',
-            			reportName: "SmokeChrome"
-            			])
-        			}
-        			}
-        			}
-}
-}
-}
-}
-}
+	}
 }

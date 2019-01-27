@@ -1,6 +1,7 @@
-Feature: Sample Feature
-Description: Demo of a feature
+Feature: User Login
+Description: User should be able to login using portal
 
+@smoke01
 Scenario Outline: User performs login
 	Given user opens the home page
 	And enters username "<user name>"
