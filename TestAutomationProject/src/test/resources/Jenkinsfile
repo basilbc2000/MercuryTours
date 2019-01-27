@@ -3,21 +3,54 @@
 pipeline {
 agent none
 stages {
-stage ('build') {
+stage ('checkout') {
 steps {
-  echo 'Steps0'
+  		echo 'Code checkout'             
+        def exists = fileExists 'TestAutomationProject'
+		if (!exists){
+    		new File('TestAutomationProject').mkdir()
+		}		
+		dir ('TestAutomationProject') {
+  				git url: 'http://localhost:3000/basil/MercuryTours.git'
+		}
 }
 }
 stage ('smoke') {
 parallel {
 stage('Firefox') {
 steps {
-echo 'Steps1'
+					echo 'Run in Firefox'
+					dir("TestAutomationProject") {                              
+					try {     	
+            		bat "mvn -f TestAutomationProject\\pom.xml clean test"
+       	 			} catch (err) {
+            	
+        			} finally {
+            			publishHTML (target: [
+            			reportDir: 'TestAutomationProject/target/cucumber-reports',
+            			reportFiles: 'index.html',
+            			reportName: "Smoke tests report"
+            			])
+        			}
+        			}
 }
 }
 stage('Chrome') {
 steps {
-echo 'Steps2'
+					echo 'Run in Chrome'
+					dir("TestAutomationProject") {                              
+					try {     	
+            		bat "mvn -f TestAutomationProject\\pom.xml clean test"
+       	 			} catch (err) {
+            	
+        			} finally {
+            			publishHTML (target: [
+            			reportDir: 'TestAutomationProject/target/cucumber-reports',
+            			reportFiles: 'index.html',
+            			reportName: "Smoke tests report"
+            			])
+        			}
+        			}
 }
 }
 }
