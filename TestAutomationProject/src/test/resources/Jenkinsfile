@@ -1,10 +1,16 @@
 #!groovy
 
 pipeline {
-agent none
+agent any
 stages {
 stage ('build') {
 }
+}
+}
+
+pipeline {
+agent none
+stages {
 stage ('smoke') {
 parallel {
 stage('Firefox') {
