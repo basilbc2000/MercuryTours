@@ -5,13 +5,15 @@ agent any
 stages {
 stage ('checkout') {
 steps {
-  		echo 'Code checkout'             
+  		echo 'Code checkout' 
+  		script {
         def exists = fileExists 'TestAutomationProject'
 		if (!exists){
     		new File('TestAutomationProject').mkdir()
 		}		
 		dir ('TestAutomationProject') {
   				git url: 'http://localhost:3000/basil/MercuryTours.git'
+		}
 		}
 }
 }
@@ -20,6 +22,7 @@ parallel {
 stage('Firefox') {
 steps {
 					echo 'Run in Firefox'
+					script {
 					dir("TestAutomationProject") {                              
 					try {     	
             		bat "mvn -f TestAutomationProject\\pom.xml clean test"
@@ -31,6 +34,7 @@ steps {
             			reportFiles: 'index.html',
             			reportName: "Smoke tests report"
             			])
+        			}
         			}
         			}
 }
@@ -38,6 +42,7 @@ steps {
 stage('Chrome') {
 steps {
 					echo 'Run in Chrome'
+					script {					
 					dir("TestAutomationProject") {                              
 					try {     	
             		bat "mvn -f TestAutomationProject\\pom.xml clean test"
@@ -49,6 +54,7 @@ steps {
             			reportFiles: 'index.html',
             			reportName: "Smoke tests report"
             			])
+        			}
         			}
         			}
 }
