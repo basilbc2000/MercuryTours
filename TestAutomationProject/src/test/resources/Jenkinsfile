@@ -11,17 +11,11 @@ steps {
 stage ('smoke') {
 parallel {
 stage('Firefox') {
-agent {
-label 'firefox'
-}
 steps {
 echo 'Steps1'
 }
 }
 stage('Chrome') {
-agent {
-label 'chrome'
-}
 steps {
 echo 'Steps2'
 }
