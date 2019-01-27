@@ -3,7 +3,7 @@ pipeline {
 	stages {
 		stage ('Checkout Code') {
 			steps {
-				echo 'Code checkout' 
+				echo '****** CHECKOUT CODE & PERFORM MVN CLEAN ******' 
 				script {
 					def exists = fileExists 'TestAutomationProject'
 					if (!exists){
@@ -21,7 +21,7 @@ pipeline {
 			parallel {
 				stage('Firefox') {
 					steps {
-						echo '****** FIREFOX ******'
+						echo '****** RUN IN FIREFOX ******'
 						script {
 							dir("TestAutomationProject") {
 								try {
@@ -35,7 +35,7 @@ pipeline {
 
 				stage('Chrome') {
 					steps {
-						echo '****** CHROME ******'
+						echo '****** RUN IN CHROME ******'
 						script {
 							dir("TestAutomationProject") {
 								try {								
@@ -52,7 +52,7 @@ pipeline {
 		stage('Report') {		
 			post {
 				success {
-					echo 'Generate Report'
+					echo '****** GENERATE REPORT ******'
 					dir("TestAutomationProject") {
 						script {
 							cucumber fileIncludePattern: '**/cucumber-*.json', parallelTesting: true
