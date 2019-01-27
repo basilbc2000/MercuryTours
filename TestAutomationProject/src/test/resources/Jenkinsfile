@@ -1,16 +1,13 @@
 #!groovy
 
 pipeline {
-agent any
-stages {
-stage ('build') {
-}
-}
-}
-
-pipeline {
 agent none
 stages {
+stage ('build') {
+steps {
+  echo 'Steps0'
+}
+}
 stage ('smoke') {
 parallel {
 stage('Firefox') {
