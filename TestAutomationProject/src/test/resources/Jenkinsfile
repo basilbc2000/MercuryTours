@@ -26,7 +26,7 @@ pipeline {
 							dir("TestAutomationProject") {
 								try {
 									bat 'mvn -f TestAutomationProject\\pom.xml test -Dcucumber.options="--tags @smoke01" -Dcucumber.options=\"--plugin json:target/cucumber-firefox.json'
-									cucumber fileIncludePattern: '**/cucumber-*.json', parallelTesting: true
+									//cucumber fileIncludePattern: '**/cucumber-*.json', parallelTesting: true
 								} catch (err) {} 
 							}
 						}
@@ -40,13 +40,24 @@ pipeline {
 							dir("TestAutomationProject") {
 								try {								
 									bat 'mvn -f TestAutomationProject\\pom.xml test -Dcucumber.options="--tags @smoke02" -Dcucumber.options=\"--plugin json:target/cucumber-chrome.json'
-									cucumber fileIncludePattern: '**/cucumber-*.json', parallelTesting: true
+									//cucumber fileIncludePattern: '**/cucumber-*.json', parallelTesting: true
 								} catch (err) {} 
 							}
 						}
 					}
 				}
 			}
-		}		
+		}
+		
+		post {
+				success {
+					echo 'Generate Report'
+					dir("TestAutomationProject") {
+						script {
+							cucumber fileIncludePattern: '**/cucumber-*.json', parallelTesting: true
+						}
+					}
+				}
+			}		
 	}
 }
