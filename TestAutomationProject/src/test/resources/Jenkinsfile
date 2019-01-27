@@ -47,6 +47,11 @@ pipeline {
 		}
 		
 		stage('Post') {
+		
+			steps {
+			    echo 'Running post build actions'			    
+			}
+
 			post {
 				success {
 					echo 'Generate Report'
