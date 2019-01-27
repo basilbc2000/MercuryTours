@@ -59,8 +59,8 @@ pipeline {
 						script {
 							def ReportPath = "${pwd()}/target/cucumber-reports"
 							def JSONPath = "${pwd()}/target/cucumber-reports/Cucumber.json"
-							echo $JSONPath
-							echo $ReportPath
+							echo JSONPath
+							echo ReportPath
 							cucumber fileIncludePattern: '**/TestAutomationProject/target/cucumber-reports/Cucumber.json', sortingMethod: 'ALPHABETICAL'
 						}
 					}
