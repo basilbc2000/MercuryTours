@@ -49,10 +49,14 @@ pipeline {
 			}
 		}
 		
-		stage('Report') {		
+		stage('Report') {
+		
+			steps {
+				echo '****** GENERATE REPORT ******'
+			}
+		
 			post {
-				success {
-					echo '****** GENERATE REPORT ******'
+				success {					
 					dir("TestAutomationProject") {
 						script {
 							cucumber fileIncludePattern: '**/cucumber-*.json', parallelTesting: true
