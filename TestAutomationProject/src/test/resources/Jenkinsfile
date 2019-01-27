@@ -11,13 +11,17 @@ node('master') {
   				git url: 'http://localhost:3000/basil/MercuryTours.git'
 		}
     }
-    
+} 
+
+   
     stage('Run tests') {
     
         echo 'Running tests'
         
-        parallel {
+        parallel 'branch1': {
         
+        	node('node1') {
+        	    
         	stage("Chrome") {
         			echo 'Chrome'
         			dir("TestAutomationProject") {                              
@@ -33,9 +37,13 @@ node('master') {
             			])
         			}
         		}
+        	}
         		    
         	}
-        	
+        	}, 'branch2': {
+        	       
+        	node('node2') {
+
         	stage("Firefox") {
         			echo 'Firefox'
         			dir("TestAutomationProject") {                              
@@ -52,8 +60,8 @@ node('master') {
         			}
         		}
         		    
+        	}
         	}        	        	        	                            
         }        
                
     }
-}
