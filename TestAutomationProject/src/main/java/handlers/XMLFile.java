@@ -67,10 +67,12 @@ public class XMLFile {
 	
 	public Document readXMLFile(String XMLFileName) {
 		try {
+			
 			template = XMLFileName;
 			dbFactory = DocumentBuilderFactory.newInstance();
 			dBuilder = dbFactory.newDocumentBuilder();
 
+			
 			//Read XMl Template
 			xfp = FileHandlers.handle().configFile().getResourcePath();
 			tdoc = dBuilder.parse(new File(xfp+template));

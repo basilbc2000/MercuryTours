@@ -6,7 +6,9 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Random;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,6 +24,9 @@ import cucumber.api.java.Before;
 import managers.FileHandlers;
 import managers.TestContext;
 import managers.WebDrivers;
+import net.masterthought.cucumber.Configuration;
+import net.masterthought.cucumber.ReportBuilder;
+import net.masterthought.cucumber.Reportable;
 
 public class CucumberHooks {
 
@@ -45,7 +50,7 @@ public class CucumberHooks {
 			String screenshotName = scenario.getName().replaceAll("\\s+", "_").toUpperCase();
 			WebDriver driver =  tc.getDriver().getDriver();
 			scenario.embed(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES), "image/png");			
-			
+						
 			try {
 				
 				//Keep screenshots of failed examples/scenarios
@@ -70,7 +75,10 @@ public class CucumberHooks {
 		System.out.println("Ending Test...");
 		tc.getDriver().closeDriver();
 	}
+	
 }
+
+
 
 
 //**************************************** Other Functions ****************************************
