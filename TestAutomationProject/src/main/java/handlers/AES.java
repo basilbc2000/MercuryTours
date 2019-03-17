@@ -1,5 +1,13 @@
 package handlers;
 
+/*set PASSP=pass
+openssl enc -aes-256-cbc -a -salt -p -pass env:PASSP -in msg.txt -out msg.txt.enc
+type msg.txt.enc
+openssl enc -aes-256-cbc -a -salt -p -pass env:PASSP -d -in msg.txt.enc
+@echo off
+@echo:*/
+	
+
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.util.Arrays;
