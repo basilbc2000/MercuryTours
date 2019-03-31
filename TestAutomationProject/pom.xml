@@ -229,6 +229,39 @@
 				</plugins>
 			</build>
 		</profile>
+
+		<profile>
+			<id>report</id>
+			<activation>
+				<property>
+					<name>run</name>
+					<value>report</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.trivago.rta</groupId>
+						<artifactId>cluecumber-report-plugin</artifactId>
+						<version>1.5.0</version>
+						<executions>
+							<execution>
+								<id>report</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>reporting</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<sourceJsonReportDirectory>${project.build.directory}\cucumber-report</sourceJsonReportDirectory>
+							<generatedHtmlReportDirectory>${project.build.directory}\test-report</generatedHtmlReportDirectory>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
 	</profiles>
 
 	<build>

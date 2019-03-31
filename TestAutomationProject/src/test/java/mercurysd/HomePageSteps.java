@@ -37,7 +37,7 @@ public class HomePageSteps {
 	@When("^login button is clicked$")
 	public void login_button_is_clicked()  {
 		hp.click_login();		
-		Assert.assertTrue(false);
+		//Assert.assertTrue(false);
 	}
 	
 	@And("^register link is clicked$")
