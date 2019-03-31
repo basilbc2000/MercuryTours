@@ -124,6 +124,13 @@
 		</dependency>
 
 
+		<!-- https://mvnrepository.com/artifact/org.xerial.thirdparty/nestedvm -->
+		<dependency>
+		    <groupId>org.xerial.thirdparty</groupId>
+		    <artifactId>nestedvm</artifactId>
+		    <version>1.0</version>
+		</dependency>
+
 
 	</dependencies>
 
