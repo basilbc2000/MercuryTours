@@ -4,6 +4,7 @@ package managers;
 
 import handlers.ConfigFile;
 import handlers.GSONFileReader;
+import handlers.SQLLiteDB;
 import handlers.XMLFile;
 
 public class FileHandlers {
@@ -12,6 +13,7 @@ public class FileHandlers {
 	private static ConfigFile cfh;
 	private static GSONFileReader jfh;
 	private static XMLFile xfh;
+	private static SQLLiteDB ltdb;
 	
 	//prevent user from creating instances
 	private FileHandlers() {
@@ -33,5 +35,9 @@ public class FileHandlers {
 	
 	public XMLFile xmlFile() {
 		return (xfh == null) ? new XMLFile() : xfh; 
+	}
+	
+	public SQLLiteDB sqlLiteDb() {
+		return (ltdb == null) ? new SQLLiteDB() : ltdb; 
 	}
 }

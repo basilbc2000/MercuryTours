@@ -1,3 +1,7 @@
+import java.sql.*
+import org.sqlite.SQLite
+import groovy.sql.Sql
+
 pipeline {
 	agent any
 	stages {
@@ -5,6 +9,12 @@ pipeline {
 			steps {
 				echo '****** CHECKOUT CODE & PERFORM MVN CLEAN ******' 
 				script {
+					
+					def sql = Sql.newInstance("jdbc:sqlite:.\\src\\test\\resources\\RunHistoryDB.db", "org.sqlite.JDBC")
+					sql.eachRow("select * from run_data") {  
+  						println("id=${it.sid}, name= ${it.path}")
+  					}
+  
 					def exists = fileExists 'TestAutomationProject'
 					if (!exists){
 						new File('TestAutomationProject').mkdir()

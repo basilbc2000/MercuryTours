@@ -15,7 +15,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-
+import java.sql.Connection;
 import com.google.common.io.Files;
 //import com.vimalselvam.cucumber.listener.Reporter;
 import cucumber.api.Scenario;
@@ -32,19 +32,36 @@ public class CucumberHooks {
 
 	TestContext tc;
 	private static Logger log = LogManager.getLogger(CucumberHooks.class.getName());
+	private static List<String> data;
 	
 	public CucumberHooks(TestContext context) {
 		tc = context;
 	}
 
 	@Before
-	public void BeforeSteps() {
+	public void BeforeSteps(Scenario scenario) {
 		System.out.println("Starting test...");
+				
 	}
 	
 	@After
-	public void AfterSteps(Scenario scenario) {
-				
+	public void AfterSteps(Scenario scenario) {			
+		
+		//For sequential run, write test results to db for pipeline
+		if (!System.getProperty("run").equals("para")) {
+			data = new ArrayList<String>(6);
+			data.add(scenario.getId());
+			data.add(scenario.getName());
+			data.add(scenario.getLines().get(1).toString());
+			String status = scenario.isFailed() ? "Failed":"Passed";
+			data.add(status);
+			data.add(System.getProperty("user.name"));
+			
+			Connection con = FileHandlers.handle().sqlLiteDb().openRunHistoryDB();
+			FileHandlers.handle().sqlLiteDb().addRunHistory(con, data);
+			FileHandlers.handle().sqlLiteDb().closeRunHistoryDB(con);
+			data.clear();
+		}
 		
 		if (scenario.isFailed()) {
 			String screenshotName = scenario.getName().replaceAll("\\s+", "_").toUpperCase();
