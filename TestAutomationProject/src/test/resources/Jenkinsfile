@@ -19,6 +19,7 @@ pipeline {
 					if (!exists){
 						new File('TestAutomationProject').mkdir()
 					}
+					
 					dir ('TestAutomationProject') {
 						git url: 'http://localhost:3000/basil/MercuryTours.git'
 						bat 'mvn -f TestAutomationProject\\pom.xml clean'
