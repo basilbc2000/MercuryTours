@@ -1,4 +1,5 @@
-import org.sqlite.SQLite
+//import org.sqlite.SQLite
+import java.sql.DriverManager
 import groovy.sql.Sql
 
 pipeline {
