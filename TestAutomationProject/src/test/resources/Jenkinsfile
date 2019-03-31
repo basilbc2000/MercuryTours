@@ -1,6 +1,6 @@
-import java.sql.*
-import org.sqlite.SQLite
-import groovy.sql.Sql
+//import java.sql.*
+//import org.sqlite.SQLite
+//import groovy.sql.Sql
 
 pipeline {
 	agent any
