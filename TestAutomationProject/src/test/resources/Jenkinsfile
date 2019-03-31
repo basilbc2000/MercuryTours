@@ -1,4 +1,4 @@
-//import org.sqlite.SQLite
+import org.sqlite.SQLite
 import groovy.sql.Sql
 
 pipeline {
