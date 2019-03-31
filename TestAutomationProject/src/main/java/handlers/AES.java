@@ -133,32 +133,31 @@ public class AES {
 	
 	public static String encrypt(String msg, String password) {
 
-		String decryptedMsg =null;		
-		byte[] headerSaltAndCipherText = Base64.decodeBase64(msg);
-		byte[] encrypted = Arrays.copyOfRange(headerSaltAndCipherText, CIPHERTEXT_OFFSET, headerSaltAndCipherText.length);
+		String encryptedMsg =null;		
+		byte[] headerSaltAndCipherText = Base64.decodeBase64(msg);		
 		try {
 			Cipher aesCBC = Cipher.getInstance("AES/CBC/PKCS5Padding");
 			final byte[][] keyAndIV = getKeyIV(headerSaltAndCipherText, aesCBC, password);
 			SecretKeySpec key = new SecretKeySpec(keyAndIV[INDEX_KEY], "AES");
 			IvParameterSpec iv = new IvParameterSpec(keyAndIV[INDEX_IV]);
 			aesCBC.init(Cipher.ENCRYPT_MODE, key, iv);
-			//Base64.encodeBase64String(aesCBC.doFinal(msg.getBytes("UTF-8")));
-			//byte[] decrypted = aesCBC.doFinal(encrypted);
-			//decryptedMsg = new String(decrypted, ASCII);
-			decryptedMsg = Base64.encodeBase64String(aesCBC.doFinal(msg.getBytes("UTF-8")));
+			encryptedMsg = Base64.encodeBase64String(aesCBC.doFinal(msg.getBytes("UTF-8")));						
 		} catch (Exception e) {e.printStackTrace();}
 		
-		return decryptedMsg;
+		return encryptedMsg;
 	}
+	
 
 	public static void main(String[] args) {
 
-		String msg = "the decrypted message is this";
+		String msg = "the decrypted message is this";		
 		String password = "pass";
 		
-		System.out.println(encrypt(msg, password));
+		System.out.println(">> "+encrypt(msg, password));
+		//System.out.println("<< "+decrypt(encrypt(msg, password), password));
 		
 		String encryptedMsg = "U2FsdGVkX190A5FsNTanwTKBdex29SpnH4zWkZN+Ld+MmbJgK4BH1whGIRRSpOJT";
+		//String encryptedMsg = "+uu21LwpQq3IXRfOxpSgF8rrQHfc9owMrha/TnEsv/8=";
 		System.out.println(decrypt(encryptedMsg, password));
 	}
 }
