@@ -7,7 +7,6 @@ openssl enc -aes-256-cbc -a -salt -p -pass env:PASSP -d -in msg.txt.enc
 @echo off
 @echo:*/
 	
-
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.util.Arrays;
@@ -16,8 +15,10 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import org.apache.commons.codec.binary.Base64;
 
-public class AES {
+//Solution from Stackoverflow - Only decryption
 
+public class OpenSslAesSo {
+	
 	private static final Charset ASCII = Charset.forName("ASCII");
 	private static final int INDEX_KEY = 0;
 	private static final int INDEX_IV = 1;
@@ -102,16 +103,16 @@ public class AES {
 	//Create Key & IV
 	public static byte[][] getKeyIV(byte[] headerSaltAndCipherText, Cipher aesCBC, String password) {		
 		byte[] salt = Arrays.copyOfRange(headerSaltAndCipherText, SALT_OFFSET, SALT_OFFSET + SALT_SIZE);
+		System.out.println("SALT: "+salt.toString());
 		byte[][] keyAndIV=null;
 		try {
 			MessageDigest md5 = MessageDigest.getInstance("MD5");
 			keyAndIV = EVP_BytesToKey(KEY_SIZE_BITS / Byte.SIZE, aesCBC.getBlockSize(), md5, salt,
 					password.getBytes(ASCII), ITERATIONS);
-		} catch (Exception e) {e.printStackTrace();}
-		
+		} catch (Exception e) {e.printStackTrace();}		
 		return keyAndIV;
 	}
-
+		
 	// https://stackoverflow.com/questions/11783062/how-to-decrypt-file-in-java-encrypted-with-openssl-command-using-aes
 	public static String decrypt(String encryptedMsg, String password) {
 
@@ -130,34 +131,13 @@ public class AES {
 		
 		return decryptedMsg;
 	}
-	
-	public static String encrypt(String msg, String password) {
-
-		String encryptedMsg =null;		
-		byte[] headerSaltAndCipherText = Base64.decodeBase64(msg);		
-		try {
-			Cipher aesCBC = Cipher.getInstance("AES/CBC/PKCS5Padding");
-			final byte[][] keyAndIV = getKeyIV(headerSaltAndCipherText, aesCBC, password);
-			SecretKeySpec key = new SecretKeySpec(keyAndIV[INDEX_KEY], "AES");
-			IvParameterSpec iv = new IvParameterSpec(keyAndIV[INDEX_IV]);
-			aesCBC.init(Cipher.ENCRYPT_MODE, key, iv);
-			encryptedMsg = Base64.encodeBase64String(aesCBC.doFinal(msg.getBytes("UTF-8")));						
-		} catch (Exception e) {e.printStackTrace();}
-		
-		return encryptedMsg;
-	}
-	
 
 	public static void main(String[] args) {
 
 		String msg = "the decrypted message is this";		
 		String password = "pass";
-		
-		System.out.println(">> "+encrypt(msg, password));
-		//System.out.println("<< "+decrypt(encrypt(msg, password), password));
-		
+					
 		String encryptedMsg = "U2FsdGVkX190A5FsNTanwTKBdex29SpnH4zWkZN+Ld+MmbJgK4BH1whGIRRSpOJT";
-		//String encryptedMsg = "+uu21LwpQq3IXRfOxpSgF8rrQHfc9owMrha/TnEsv/8=";
-		System.out.println(decrypt(encryptedMsg, password));
+		System.out.println(decrypt(encryptedMsg, password));		
 	}
 }
