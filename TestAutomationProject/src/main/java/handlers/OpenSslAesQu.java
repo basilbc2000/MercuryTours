@@ -146,9 +146,11 @@ public class OpenSslAesQu {
 		
 		String encryptedMsg = "U2FsdGVkX190A5FsNTanwTKBdex29SpnH4zWkZN+Ld+MmbJgK4BH1whGIRRSpOJT";
 		String encryptedMsg2 = "U2FsdGVkX1/B6oOznz5+nd7W/qXwXI7G7rhj5o9pjx8MS0TXp9SNxO3AhM9HBJ/z";
+		String encryptedMsg3 = "U2FsdGVkX1/hujffC/a+V7ZOaEssYwAHgQhJWA18q3TVpiEaa1+bK/gFddoOO2iO";
 		
 		System.out.println(decrypt(password,encryptedMsg));
 		System.out.println(decrypt(password,encryptedMsg2));
+		System.out.println(decrypt(password,encryptedMsg3));
 		System.out.println(decrypt(password,encrypt(password,msg)));
 	}
 

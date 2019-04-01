@@ -10,6 +10,7 @@ pipeline {
 			steps {
 				echo '****** CHECKOUT CODE & PERFORM MVN CLEAN ******' 
 				script {					
+					System.setProperty("sqlite.purejava", "true");
 					Class.forName('org.sqlite.JDBC')
 					def sql = Sql.newInstance('jdbc:sqlite:.\\src\\test\\resources\\RunHistoryDB.db', 'org.sqlite.JDBC')
 					sql.eachRow('select * from run_data') {  
