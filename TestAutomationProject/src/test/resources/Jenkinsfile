@@ -2,11 +2,6 @@
 //import org.sqlite.SQLite
 import groovy.sql.Sql
 
-
-
-
-pipeline {
-
 	configurations {
 	    sqllite
 	}
@@ -24,6 +19,8 @@ pipeline {
 	    loader.addURL(file.toURL())
 	}
 
+
+pipeline {
 	agent any
 	stages {
 		stage ('Checkout Code') {
