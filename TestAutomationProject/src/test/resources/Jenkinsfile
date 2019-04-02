@@ -14,8 +14,8 @@ pipeline {
 						bat 'mvn -f TestAutomationProject\\pom.xml clean'
 						//bat 'sqlite3 TestAutomationProject\\src\\test\\resources\\RunDataDB.db "SELECT * FROM RUN_DATA;" ".exit"'
 						def features = bat (script: 'sqlite3 TestAutomationProject\\src\\test\\resources\\RunDataDB.db "SELECT DISTINCT PATH FROM RUN_DATA WHERE STATUS = \'Passed\' AND strftime(\'%%d%%m%%Y\',TIMESTAMP) = strftime(\'%%d%%m%%Y\',\'now\');" ".exit"')
-						echo ${features}					
-						echo features
+						echo ">>>>>"
+						echo ${features}											
 					}
 				}
 			}
