@@ -12,7 +12,8 @@ pipeline {
 					dir ('TestAutomationProject') {						
 						git url: 'http://localhost:3000/basil/MercuryTours.git'								
 						bat 'mvn -f TestAutomationProject\\pom.xml clean'
-						bat 'sqlite3 TestAutomationProject\\src\\test\\resources\\RunDataDB.db "SELECT * FROM RUN_DATA;" ".exit"'												
+						bat 'sqlite3 TestAutomationProject\\src\\test\\resources\\RunDataDB.db "SELECT * FROM RUN_DATA;" ".exit"'
+						bat 'sqlite3 TestAutomationProject\\src\\test\\resources\\RunDataDB.db "SELECT SID FROM RUN_DATA WHERE STATUS="Passed" AND strftime("%d%m%Y",TIMESTAMP) = strftime("%d%m%Y","now");" ".exit"												
 					}
 				}
 			}
