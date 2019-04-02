@@ -15,15 +15,14 @@ pipeline {
 					//sql.eachRow('select * from run_data') {  
   					//	println('id=${it.sid}, name= ${it.path}')
   					//}
-  					
-  					bat 'sqlite3 .\\src\\test\\resources\\RunHistoryDB.db "select * from run_data;" ".exit"'
-  
+  					  					
 					def exists = fileExists 'TestAutomationProject'
 					if (!exists){
 						new File('TestAutomationProject').mkdir()
 					}					
-					dir ('TestAutomationProject') {
+					dir ('TestAutomationProject') {						
 						git url: 'http://localhost:3000/basil/MercuryTours.git'
+						bat 'sqlite3 .\\src\\test\\resources\\RunHistoryDB.db "select * from run_data;" ".exit"'
 						bat 'mvn -f TestAutomationProject\\pom.xml clean'
 					}
 				}
