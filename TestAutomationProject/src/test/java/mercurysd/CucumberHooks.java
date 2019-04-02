@@ -47,21 +47,20 @@ public class CucumberHooks {
 	public void AfterSteps(Scenario scenario) {			
 		
 		//For sequential run, write test results to db for pipeline
-		//if (!System.getProperty("run").equals("para")) {
-			data = new ArrayList<String>(6);
-			data.add(scenario.getId());
+		if (!System.getProperty("run").equals("para")) {
+			data = new ArrayList<String>(6);			
 			data.add(scenario.getName());
+			data.add(scenario.getUri());			
 			data.add(scenario.getLines().get(1).toString());
 			String status = scenario.isFailed() ? "Failed":"Passed";
 			data.add(status);
 			data.add(System.getProperty("user.name"));
 			
 			Connection con = FileHandlers.handle().sqlLiteDb().openRunDataDB();
-			//FileHandlers.handle().sqlLiteDb().clearRunData(con);
 			FileHandlers.handle().sqlLiteDb().addRunData(con, data);
 			FileHandlers.handle().sqlLiteDb().closeRunDataDB(con);
 			data.clear();
-		//}
+		}
 		
 		if (scenario.isFailed()) {
 			String screenshotName = scenario.getName().replaceAll("\\s+", "_").toUpperCase();

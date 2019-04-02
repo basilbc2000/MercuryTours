@@ -22,7 +22,7 @@ public class SQLLiteDB {
 			statement.executeUpdate(
 					
 				"CREATE TABLE IF NOT EXISTS RUN_DATA (" 
-				+"SID 			STRING,"
+				+"NAME 			STRING,"
 				+"PATH 			STRING,"
 				+"STEPS 		INTEGER," 
 				+"STATUS 		STRING,"
@@ -59,7 +59,7 @@ public class SQLLiteDB {
 			
 			st.executeUpdate(
 					
-					"INSERT INTO RUN_DATA (SID, PATH, STEPS, STATUS, USER)" 
+					"INSERT INTO RUN_DATA (NAME, PATH, STEPS, STATUS, USER)" 
 						+"VALUES('"
 						+data.get(0)+"','"
 						+data.get(1)+"','"
