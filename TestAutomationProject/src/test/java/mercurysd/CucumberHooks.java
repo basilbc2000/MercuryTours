@@ -36,7 +36,14 @@ public class CucumberHooks {
 	
 	public CucumberHooks(TestContext context) {
 		tc = context;
+		//clearRunDataTbl();
 	}
+	
+	/*public void clearRunDataTbl () {
+		Connection con = FileHandlers.handle().sqlLiteDb().openRunDataDB();
+		FileHandlers.handle().sqlLiteDb().clearRunData(con);		
+		FileHandlers.handle().sqlLiteDb().closeRunDataDB(con);
+	}*/
 
 	@Before
 	public void BeforeSteps(Scenario scenario) {

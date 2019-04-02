@@ -21,9 +21,11 @@ pipeline {
 						new File('TestAutomationProject').mkdir()
 					}					
 					dir ('TestAutomationProject') {						
-						git url: 'http://localhost:3000/basil/MercuryTours.git'
-						bat 'sqlite3 TestAutomationProject\\src\\test\\resources\\RunDataDB.db "SELECT * FROM RUN_DATA;" ".exit"'						
+						git url: 'http://localhost:3000/basil/MercuryTours.git'								
 						bat 'mvn -f TestAutomationProject\\pom.xml clean'
+						bat 'sqlite3 src\\test\\resources\\RunDataDB.db "SELECT * FROM RUN_DATA;" ".exit"'
+						bat 'sqlite3 src\\test\\resources\\RunDataDB.db "DELETE FROM RUN_DATA;" ".exit"'
+						bat 'sqlite3 src\\test\\resources\\RunDataDB.db "VACUUM;" ".exit"'				
 					}
 				}
 			}
@@ -75,8 +77,6 @@ pipeline {
 						script {
 							//cucumber fileIncludePattern: '**/cucumber-*.json', parallelTesting: true
 							cucumber fileIncludePattern: '**/*scenario*.json', parallelTesting: true
-							bat 'sqlite3 TestAutomationProject\\src\\test\\resources\\RunDataDB.db "DELETE FROM RUN_DATA;" ".exit"'
-							bat 'sqlite3 TestAutomationProject\\src\\test\\resources\\RunDataDB.db "VACUUM;" ".exit"'
 							//bat 'mvn cluecumber-report:reporting'
 						}
 					}
