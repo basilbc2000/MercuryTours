@@ -40,7 +40,10 @@ public class CucumberHooks {
 
 	@Before
 	public void BeforeSteps(Scenario scenario) {
-		System.out.println("Starting test...");				
+		System.out.println("Starting test...");		
+		Connection con = FileHandlers.handle().sqlLiteDb().openRunDataDB();
+		FileHandlers.handle().sqlLiteDb().clearRunData(con);
+		FileHandlers.handle().sqlLiteDb().closeRunDataDB(con);
 	}
 	
 	@After
@@ -56,9 +59,9 @@ public class CucumberHooks {
 			data.add(status);
 			data.add(System.getProperty("user.name"));
 			
-			Connection con = FileHandlers.handle().sqlLiteDb().openRunHistoryDB();
-			FileHandlers.handle().sqlLiteDb().addRunHistory(con, data);
-			FileHandlers.handle().sqlLiteDb().closeRunHistoryDB(con);
+			Connection con = FileHandlers.handle().sqlLiteDb().openRunDataDB();
+			FileHandlers.handle().sqlLiteDb().addRunData(con, data);
+			FileHandlers.handle().sqlLiteDb().closeRunDataDB(con);
 			data.clear();
 		//}
 		

@@ -13,33 +13,37 @@ public class SQLLiteDB {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void initRunDataDB (Connection con) {
+	public void initRunDataTbl (Connection con) {
 		try {
 			Statement statement = con.createStatement();
 			statement.setQueryTimeout(30);
 			//statement.executeUpdate("drop table if exists run_data");
-			statement.executeUpdate("create table if not exists run_data (" 
-				+"sid string,"
-				+"path string,"
-				+"steps integer," 
-				+"status string,"
-				+"runby string,"
-				+"timestamp DATETIME NOT NULL DEFAULT "
-				+"(strftime('%Y-%m-%d %H:%M:%f', 'now', 'localtime')))");
+			
+			statement.executeUpdate(
+					
+				"CREATE TABLE IF NOT EXISTS RUN_DATA (" 
+				+"SID 			STRING,"
+				+"PATH 			STRING,"
+				+"STEPS 		INTEGER," 
+				+"STATUS 		STRING,"
+				+"USER 			STRING,"
+				+"TIMESTAMP 	DATETIME NOT NULL DEFAULT "
+								+"(strftime('%Y-%m-%d %H:%M:%f', 'now', 'localtime')))");
+			
 		} catch (Exception e) {e.printStackTrace();}
 	}
 	
-	public Connection openRunHistoryDB() {
+	public Connection openRunDataDB() {
 		Connection con = null;
 		try {		
 			Class.forName("org.sqlite.JDBC");			
-			con = DriverManager.getConnection("jdbc:sqlite:.\\src\\test\\resources\\RunHistoryDB.db");
-			initRunDataDB (con);			
+			con = DriverManager.getConnection("jdbc:sqlite:.\\src\\test\\resources\\RunDataDB.db");
+			initRunDataTbl (con);			
 		} catch (Exception e) {e.printStackTrace();}
 		return con;
 	}
 	
-	public ResultSet selectRunHistoryTbl(Connection con, String query) {
+	public ResultSet queryRunData(Connection con, String query) {
 		ResultSet rs = null;
 		try {
 			Statement statement = con.createStatement();
@@ -48,24 +52,36 @@ public class SQLLiteDB {
 		return rs;
 	}
 	
-	public void addRunHistory(Connection con, List<String> data) {
+	public void addRunData(Connection con, List<String> data) {
 		
 		try {
 			
-			Statement st = con.createStatement();		
+			Statement st = con.createStatement();	
+			
 			st.executeUpdate(
-					"insert into run_data (sid, path, steps, status, runby)" 
-						+"values('"
+					
+					"INSERT INTO RUN_DATA (SID, PATH, STEPS, STATUS, USER)" 
+						+"VALUES('"
 						+data.get(0)+"','"
 						+data.get(1)+"','"
 						+data.get(2)+"','"
 						+data.get(3)+"','"
-						+data.get(4)+"')");						
+						+data.get(4)+"')");	
+			
 		} catch (Exception e) {e.printStackTrace();}
 		
 	}
 	
-	public void closeRunHistoryDB(Connection con) {
+	public void clearRunData(Connection con) {
+		try {			
+			Statement st = con.createStatement();				
+			st.executeUpdate("DELETE FROM RUN_DATA");	
+			st.executeUpdate("VACCUM");
+			
+		} catch (Exception e) {e.printStackTrace();}
+	}
+	
+	public void closeRunDataDB(Connection con) {
 		try {
 			if (con != null) con.close();
 		} catch (Exception e) {e.printStackTrace();}
