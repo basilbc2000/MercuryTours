@@ -2,8 +2,10 @@ package runner;
 
 import java.sql.Connection;
 
+import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import cucumber.api.CucumberOptions;
+import cucumber.api.Scenario;
 import cucumber.api.junit.Cucumber;
 import managers.FileHandlers;
 
@@ -18,5 +20,11 @@ import managers.FileHandlers;
 )
 
 public class RunnerTest {
-
+	
+	@BeforeClass
+	public static void BeforeClass() {
+		Connection con = FileHandlers.handle().sqlLiteDb().openRunDataDB();
+		FileHandlers.handle().sqlLiteDb().clearRunData(con);		
+		FileHandlers.handle().sqlLiteDb().closeRunDataDB(con);		
+	}
 }

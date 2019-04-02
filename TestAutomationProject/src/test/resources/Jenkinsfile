@@ -1,21 +1,10 @@
-//import java.sql.*
-//import org.sqlite.SQLite
-import groovy.sql.Sql
-
 pipeline {
 	agent any
 	stages {
 		stage ('Checkout Code') {
 			steps {
 				echo '****** CHECKOUT CODE & PERFORM MVN CLEAN ******' 
-				script {					
-					//System.setProperty("sqlite.purejava", "true");
-					//Class.forName('org.sqlite.JDBC')
-					//def sql = Sql.newInstance("jdbc:sqlite:.\\src\\test\\resources\\RunHistoryDB.db", "org.sqlite.JDBC")
-					//sql.eachRow('select * from run_data') {  
-  					//	println('id=${it.sid}, name= ${it.path}')
-  					//}
-  					  					
+				script {					  					  					
 					def exists = fileExists 'TestAutomationProject'
 					if (!exists){
 						new File('TestAutomationProject').mkdir()
@@ -23,12 +12,7 @@ pipeline {
 					dir ('TestAutomationProject') {						
 						git url: 'http://localhost:3000/basil/MercuryTours.git'								
 						bat 'mvn -f TestAutomationProject\\pom.xml clean'
-						bat 'sqlite3 TestAutomationProject\\src\\test\\resources\\RunDataDB.db "SELECT * FROM RUN_DATA;" ".exit"'
-						bat 'sqlite3 TestAutomationProject\\src\\test\\resources\\RunDataDB.db "DELETE FROM RUN_DATA;" ".exit"'
-						bat 'sqlite3 TestAutomationProject\\src\\test\\resources\\RunDataDB.db "VACUUM;" ".exit"'				
-						bat 'sqlite3 src\\test\\resources\\RunDataDB.db "SELECT * FROM RUN_DATA;" ".exit"'
-						bat 'sqlite3 src\\test\\resources\\RunDataDB.db "DELETE FROM RUN_DATA;" ".exit"'
-						bat 'sqlite3 src\\test\\resources\\RunDataDB.db "VACUUM;" ".exit"'
+						bat 'sqlite3 TestAutomationProject\\src\\test\\resources\\RunDataDB.db "SELECT * FROM RUN_DATA;" ".exit"'												
 					}
 				}
 			}
