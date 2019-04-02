@@ -2,24 +2,6 @@
 //import org.sqlite.SQLite
 import groovy.sql.Sql
 
-	configurations {
-	    sqllite
-	}
-	
-	repositories {
-	    mavenCentral()
-	}
-	
-	dependencies {
-	    sqllite 'org.xerial:sqlite-jdbc:3.27.2.1'
-	}
-	
-	URLClassLoader loader = GroovyObject.class.classLoader
-	configurations.sqllite.each { File file ->
-	    loader.addURL(file.toURL())
-	}
-
-
 pipeline {
 	agent any
 	stages {
@@ -27,9 +9,9 @@ pipeline {
 			steps {
 				echo '****** CHECKOUT CODE & PERFORM MVN CLEAN ******' 
 				script {					
-					System.setProperty("sqlite.purejava", "true");
-					Class.forName('org.sqlite.JDBC')
-					def sql = Sql.newInstance('jdbc:sqlite:.\\src\\test\\resources\\RunHistoryDB.db', 'org.sqlite.JDBC')
+					//System.setProperty("sqlite.purejava", "true");
+					//Class.forName('org.sqlite.JDBC')
+					def sql = Sql.newInstance("jdbc:sqlite:.\\src\\test\\resources\\RunHistoryDB.db", "org.sqlite.JDBC")
 					sql.eachRow('select * from run_data') {  
   						println('id=${it.sid}, name= ${it.path}')
   					}
