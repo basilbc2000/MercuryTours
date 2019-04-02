@@ -22,7 +22,7 @@ pipeline {
 					}					
 					dir ('TestAutomationProject') {						
 						git url: 'http://localhost:3000/basil/MercuryTours.git'
-						bat 'sqlite3 .\\src\\test\\resources\\RunHistoryDB.db "select * from run_data;" ".exit"'
+						bat 'sqlite3 TestAutomationProject\\src\\test\\resources\\RunHistoryDB.db "select * from run_data;" ".exit"'
 						bat 'mvn -f TestAutomationProject\\pom.xml clean'
 					}
 				}
