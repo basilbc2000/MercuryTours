@@ -37,8 +37,7 @@ public class SQLLiteDB {
 		Connection con = null;
 		try {		
 			Class.forName("org.sqlite.JDBC");			
-			con = DriverManager.getConnection("jdbc:sqlite:.\\src\\test\\resources\\RunDataDB.db");
-			initRunDataTbl (con);			
+			con = DriverManager.getConnection("jdbc:sqlite:.\\src\\test\\resources\\RunDataDB.db");						
 		} catch (Exception e) {e.printStackTrace();}
 		return con;
 	}
@@ -74,9 +73,10 @@ public class SQLLiteDB {
 	
 	public void clearRunData(Connection con) {
 		try {			
-			Statement st = con.createStatement();				
+			Statement st = con.createStatement();
+			initRunDataTbl (con);
 			st.executeUpdate("DELETE FROM RUN_DATA");	
-			st.executeUpdate("VACCUM");
+			//st.executeUpdate("VACCUM");
 			
 		} catch (Exception e) {e.printStackTrace();}
 	}
