@@ -13,7 +13,7 @@ pipeline {
 						git url: 'http://localhost:3000/basil/MercuryTours.git'								
 						bat 'mvn -f TestAutomationProject\\pom.xml clean'
 						//bat 'sqlite3 TestAutomationProject\\src\\test\\resources\\RunDataDB.db "SELECT * FROM RUN_DATA;" ".exit"'
-						def features = bat 'sqlite3 TestAutomationProject\\src\\test\\resources\\RunDataDB.db "SELECT DISTINCT PATH FROM RUN_DATA WHERE STATUS = \'Passed\' AND strftime(\'%%d%%m%%Y\',TIMESTAMP) = strftime(\'%%d%%m%%Y\',\'now\');" ".exit"'
+						def features = bat ('sqlite3 TestAutomationProject\\src\\test\\resources\\RunDataDB.db "SELECT DISTINCT PATH FROM RUN_DATA WHERE STATUS = \'Passed\' AND strftime(\'%%d%%m%%Y\',TIMESTAMP) = strftime(\'%%d%%m%%Y\',\'now\');" ".exit"')
 						echo "feature files: ${features}"												
 					}
 				}
