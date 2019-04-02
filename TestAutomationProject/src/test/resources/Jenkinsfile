@@ -23,9 +23,12 @@ pipeline {
 					dir ('TestAutomationProject') {						
 						git url: 'http://localhost:3000/basil/MercuryTours.git'								
 						bat 'mvn -f TestAutomationProject\\pom.xml clean'
+						bat 'sqlite3 TestAutomationProject\\src\\test\\resources\\RunDataDB.db "SELECT * FROM RUN_DATA;" ".exit"'
+						bat 'sqlite3 TestAutomationProject\\src\\test\\resources\\RunDataDB.db "DELETE FROM RUN_DATA;" ".exit"'
+						bat 'sqlite3 TestAutomationProject\\src\\test\\resources\\RunDataDB.db "VACUUM;" ".exit"'				
 						bat 'sqlite3 src\\test\\resources\\RunDataDB.db "SELECT * FROM RUN_DATA;" ".exit"'
 						bat 'sqlite3 src\\test\\resources\\RunDataDB.db "DELETE FROM RUN_DATA;" ".exit"'
-						bat 'sqlite3 src\\test\\resources\\RunDataDB.db "VACUUM;" ".exit"'				
+						bat 'sqlite3 src\\test\\resources\\RunDataDB.db "VACUUM;" ".exit"'
 					}
 				}
 			}
