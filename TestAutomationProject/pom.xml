@@ -117,27 +117,27 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java -->
-		<dependency>
+	<!--	<dependency>
 			<groupId>com.google.protobuf</groupId>
 			<artifactId>protobuf-java</artifactId>
 			<version>3.7.0</version>
-		</dependency>
+		</dependency> -->
 
 
 		<!-- https://mvnrepository.com/artifact/org.xerial.thirdparty/nestedvm -->
-		<dependency>
+	<!--	<dependency>
 			<groupId>org.xerial.thirdparty</groupId>
 			<artifactId>nestedvm</artifactId>
 			<version>1.0</version>
-		</dependency>
+		</dependency> -->
 
 		<!-- https://mvnrepository.com/artifact/org.codehaus.groovy/groovy-all -->
-		<dependency>
+	<!-- 	<dependency>
 			<groupId>org.codehaus.groovy</groupId>
 			<artifactId>groovy-all</artifactId>
 			<version>3.0.0-alpha-4</version>
 			<type>pom</type>
-		</dependency>
+		</dependency> -->
 
 	</dependencies>
 
