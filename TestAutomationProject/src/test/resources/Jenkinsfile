@@ -18,6 +18,7 @@ pipeline {
 							script:'sqlite3 TestAutomationProject\\src\\test\\resources\\RunDataDB.db "SELECT DISTINCT PATH FROM RUN_DATA WHERE STATUS = \'Passed\' AND strftime(\'%%d%%m%%Y\',TIMESTAMP) = strftime(\'%%d%%m%%Y\',\'now\');" ".exit"',							
 							returnStdout: true
 						).trim()	
+						bat '@echo on'
 						echo ">>>>>"
 						echo "${features}"						
 					}
