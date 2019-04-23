@@ -8,7 +8,7 @@ pipeline {
 				echo 'Checkout code and perform mvn clean' 	
 				script {
 					bat 'dir'	
-					git branch -a				
+					bat 'git branch -a'				
 				}
 			}
 		}
