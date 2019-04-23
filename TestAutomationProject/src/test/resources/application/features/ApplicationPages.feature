@@ -14,7 +14,7 @@ Examples:
 |sample|test|
 |simple|toast|
 #|sea|coast|
-#|simple|toasty|
+#|simple|toast|
 #|sea|coast|
 #|sample|test|
 #|simple|toast|
