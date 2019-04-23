@@ -1,7 +1,7 @@
 Feature: User Login
 Description: User should be able to login using portal
 
-@smoke01
+@smoke01 @passed
 Scenario Outline: User performs login
 	Given user opens the home page
 	And enters username "<user name>"
