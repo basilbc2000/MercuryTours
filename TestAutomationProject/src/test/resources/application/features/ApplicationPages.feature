@@ -4,10 +4,10 @@ Description: User should be able to login using portal
 @smoke01 @passed
 Scenario Outline: User performs login
 	Given user opens the home page
-	And enters username "<user name>"
-	And enters password "<password>"
-	When login button is clicked
-	Then signon page is opened
+#	And enters username "<user name>"
+#	And enters password "<password>"
+#	When login button is clicked
+#	Then signon page is opened
 	
 Examples:
 |user name|password|
