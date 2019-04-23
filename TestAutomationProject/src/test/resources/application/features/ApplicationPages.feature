@@ -12,7 +12,7 @@ Scenario Outline: User performs login
 Examples:
 |user name|password|
 |sample|test|
-|simple|toasteeeee|
+|simple|toastee|
 #|sea|coast|
 #|simple|toasty|
 #|sea|coast|
