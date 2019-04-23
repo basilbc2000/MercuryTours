@@ -15,7 +15,7 @@ pipeline {
 					}				
 						
 					dir ('TestAutomationProject') {						
-						git url: 'https://github.com/basilbc2000/MercuryTours.git'								
+						git url: 'http://localhost:3000/basil/MercuryTours.git'								
 						bat 'mvn -f TestAutomationProject\\pom.xml clean'											
 					}
 				}
