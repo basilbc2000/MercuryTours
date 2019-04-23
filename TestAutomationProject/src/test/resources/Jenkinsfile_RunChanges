@@ -3,7 +3,7 @@ pipeline {
 	agent any
 	stages {
 	
-		stage ('Checkout Codesssssssssssst') {
+		stage ('Checkout Codessssssssssssst') {
 			steps {
 				echo 'Checkout code and perform mvn clean' 	
 				script {
