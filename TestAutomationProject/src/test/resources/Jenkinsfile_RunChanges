@@ -1,35 +1,43 @@
 #!/usr/bin/env groovy
 
 pipeline {
-
 	agent any
-	
 	stages {
-	
-		stage ('Checkout Code') {
-			steps {
-				echo 'Checkout code and perform mvn clean' 	
-				script {
-				
-					def exists = fileExists 'TestAutomationProject'
-					
-					if (!exists){
-							new File('TestAutomationProject').mkdir()
-					}					
-					
-					dir ('TestAutomationProject') {						
-						git branch: 'develop', url: 'http://localhost:3000/basil/MercuryTours.git'								
-						bat 'git branch -a'
-					}				
-									
-				}
-			}
-		}
-		
-		stage ('Change Verification') {
-			steps {
-				echo 'Identify changes in branch [develop] w.r.t branch [master]...'				
-			}
-		}				
+    		stage ('Verify Changes') {
+    			steps {
+    				script {
+    				
+    					def exists = fileExists 'TestAutomationProject'
+    					
+    					if (!exists){
+    							new File('TestAutomationProject').mkdir()
+    					}					
+    					
+    					dir ('TestAutomationProject') {						
+    						git branch: 'develop', url: 'http://localhost:3000/basil/MercuryTours.git'
+    						
+    						def features = bat (														
+    							script: 'git diff --stat develop master | grep "feature" | awk "{print $1}" | sed "s/^..../classpath:/"',							
+    							returnStdout: true
+    						).trim().readLines().drop(1).join(",").split(",")						
+    						
+    						sh "echo :::NEED TO RUN [${features.size()}] CHANGED FEATURE FILES:::"
+    						bat 'mvn -f TestAutomationProject\\pom.xml clean compile'
+    						
+                            for (int i = 0; i < features.size(); i++) {
+                               def feature_name = features[i].tokenize('/')[-1]
+                               sh "echo :::RUNNING FEATURE FILE::: [${features[i]}]"
+                               try {
+                                sh "mvn -f TestAutomationProject/\\pom.xml test -Dcucumber.options=\"${features[i]} --tags @passed --plugin json:target/cucumber-reports/cucumber-${feature_name}.json\""
+                               } catch (err) {}
+                            }
+                            
+                            sh "echo :::GENERATING TEST REPORT:::"
+                            cucumber fileIncludePattern: '**/cucumber-*.json', parallelTesting: true
+    					}				
+    					
+    				}
+    			}
+    		}
 	}
 }
