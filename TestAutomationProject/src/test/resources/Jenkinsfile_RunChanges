@@ -18,7 +18,7 @@ pipeline {
 					}					
 					
 					dir ('TestAutomationProject') {						
-						git branch: develop url: 'http://localhost:3000/basil/MercuryTours.git'								
+						git branch: 'develop' url: 'http://localhost:3000/basil/MercuryTours.git'								
 						bat 'git branch -a'
 					}				
 									
