@@ -11,4 +11,4 @@ Scenario Outline: User performs registration
 
 Examples:
 |customer|
-|Test01|
+|Test0190|
