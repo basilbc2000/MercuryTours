@@ -13,24 +13,19 @@ Examples:
 |user name|password|
 |sample|test|
 |simple|toast|
-#|sea|coast|
-#|simple|toast|
-#|sea|coast|
-#|sample|test|
-#|simple|toast|
-#|sea|coast|
-#|simple|toast|
-#|sea|coast|
-#|sample|test|
-#|simple|toast|
-#|sea|coast|
-#|simple|toast|
-#|sea|coast|
-#|sample|test|
-#|simple|toast|
-#|sea|coast|
-#|simple|toast|
-#|sea|coast|
+
+@smoke01 @passed
+Scenario Outline: User performs login22
+	Given user opens the home page
+	And enters username "<user name>"
+	And enters password "<password>"
+	When login button is clicked
+	Then signon page is opened
+	
+Examples:
+|user name|password|
+|sample|test|
+|simply|toasty|
 
 #Scenario: User opens registration page
 #	Given user opens the home page
