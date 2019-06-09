@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-sources>
+	<data-source id="sqlite_jdbc-16af411fe2a-7d6e755d91c5c3ca" provider="generic" driver="sqlite_jdbc" name="SQLite - RunDataDB.db;" save-password="true" read-only="false">
+		<connection server="" database="/Volumes/STRONTIUM/eclipse/JsonParser/RunDataDB.db;" url="jdbc:sqlite:/Volumes/STRONTIUM/eclipse/JsonParser/RunDataDB.db;" type="dev"/>
+	</data-source>
+	<filters/>
+</data-sources>
