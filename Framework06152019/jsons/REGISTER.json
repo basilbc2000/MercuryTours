@@ -1,0 +1,16 @@
+ {
+	"FIRST_NAME": "firstName",
+    "LAST_NAME": "lastName",
+    "phone": "phone",
+    "userName": "userName",
+    "address1": "address1",
+    "address2": "address2",
+    "city": "city",
+    "state": "state",
+    "postalCode": "postalCode",
+    "country": "country",
+    "email": "email",
+    "password": "password",
+    "confirmPassword": "confirmPassword",
+    "register": "register"
+}
