@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="WARN">
+
+	<Properties>
+		<Property name="DEBUG_PATTERN">%n[%p] %d{yy.MM.dd HH:mm:ss}
+			%n>>%logger{36}.%M(%L) %n>>[%m]%n%n</Property>
+		<Property name="INFO_PATTERN">[%-5level] %msg%n</Property>
+		<Property name="WARN_PATTERN">[%-5level] !!! %msg%n</Property>
+	</Properties>
+
+	<Appenders>
+		<Console name="debug" target="SYSTEM_OUT">
+			<LevelRangeFilter minLevel="DEBUG" maxLevel="DEBUG"
+				onMatch="ACCEPT" onMismatch="DENY" />
+			<PatternLayout pattern="${DEBUG_PATTERN}" />
+		</Console>
+		<Console name="error" target="SYSTEM_OUT">
+			<LevelRangeFilter minLevel="ERROR" maxLevel="ERROR"
+				onMatch="ACCEPT" onMismatch="DENY" />
+			<PatternLayout pattern="${DEBUG_PATTERN}" />
+		</Console>
+		<Console name="info" target="SYSTEM_OUT">
+			<LevelRangeFilter minLevel="INFO" maxLevel="INFO"
+				onMatch="ACCEPT" onMismatch="DENY" />
+			<PatternLayout pattern="${INFO_PATTERN}" />
+		</Console>
+		<Console name="warn" target="SYSTEM_OUT">
+			<LevelRangeFilter minLevel="WARN" maxLevel="WARN"
+				onMatch="ACCEPT" onMismatch="DENY" />
+			<PatternLayout pattern="${WARN_PATTERN}" />
+		</Console>
+	</Appenders>
+
+	<Loggers>
+		<Root level="debug">
+			<AppenderRef ref="debug" />
+			<AppenderRef ref="info" />
+			<AppenderRef ref="warn" />
+			<AppenderRef ref="error" />
+		</Root>
+	</Loggers>
+
+</Configuration>

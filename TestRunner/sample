@@ -1,0 +1,1 @@
+echo -e "\n\n___Running Tests $1___\n\n"

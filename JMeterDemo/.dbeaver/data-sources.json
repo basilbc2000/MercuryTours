@@ -1,0 +1,27 @@
+{
+	"folders": {},
+	"connections": {
+		"sqlite_jdbc-16af411fe2a-7d6e755d91c5c3ca": {
+			"provider": "generic",
+			"driver": "sqlite_jdbc",
+			"name": "SQLite - RunDataDB.db;",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"database": "/Volumes/STRONTIUM/eclipse/JsonParser/RunDataDB.db;",
+				"url": "jdbc:sqlite:/Volumes/STRONTIUM/eclipse/JsonParser/RunDataDB.db;",
+				"type": "dev"
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false
+		}
+	}
+}

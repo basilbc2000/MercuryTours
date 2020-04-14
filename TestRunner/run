@@ -1,0 +1,3 @@
+echo "echo "Running Test $1"" > terminal_cmd.sh
+chmod +x terminal_cmd.sh
+/usr/bin/open -a Terminal ./terminal_cmd.sh
